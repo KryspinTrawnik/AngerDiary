@@ -5,18 +5,18 @@ using System.Globalization;
 
 namespace AngerDiary
 {
-    public class ItemService
+    public class EventService
     {
-        public List<Item> Items { get; set; }
-        public ItemService()
+        public List<Event> Items { get; set; }
+        public EventService()
         {
-            Items = new List<Item>();
+            Items = new List<Event>();
 
         }
-        public DateTime AddNewEventView()
+        public DateTime AddNewEventDate()
         {
             string giventime;
-            Item item = new Item();
+            Event item = new Event();
             Console.WriteLine("Please, enter date and time of a new event");
             Console.WriteLine("Please, use format YYYY/MM/DD");
             giventime = Console.ReadLine();
@@ -27,14 +27,14 @@ namespace AngerDiary
            
             return timeofevent;
         }
-        public string AddNewEvent()
+        public string AddNewEventFeatures()
         {
-            Item item = new Item();
+            Event item = new Event();
             Console.WriteLine("Describe the event:");
             string description = Console.ReadLine();
-            item.Descriptionofevent = description;
+            item.Description = description;
 
-            Console.WriteLine("wh");
+            Console.WriteLine("");
                 return description;
         }
     }

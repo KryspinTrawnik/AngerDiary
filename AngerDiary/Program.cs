@@ -21,7 +21,7 @@ namespace AngerDiary
            
             MenuActionService actionService = new MenuActionService();
             actionService = Initialize(actionService);
-            ItemService itemService = new ItemService();
+            EventService itemService = new EventService();
             Console.WriteLine("Welcome to Anger Diary");
             Console.WriteLine("Hope you are alright");
             Console.WriteLine("Please let me know what would you like to do");
@@ -34,8 +34,8 @@ namespace AngerDiary
             switch(operation.KeyChar)
             {
                 case '1':
-                    var addeventview = itemService.AddNewEventView();
-                    itemService.AddNewEvent(addeventview);
+                    var addNewEventDate = itemService.AddNewEventDate();
+                    itemService.AddNewEventFeatures();
                     break;
                 case '2':
                     break;
