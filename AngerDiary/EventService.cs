@@ -27,15 +27,19 @@ namespace AngerDiary
            
             return timeofevent;
         }
-        public string AddNewEventFeatures()
+        public void AddNewEventFeatures()
         {
+            
             Event item = new Event();
             Console.WriteLine("Describe the event:");
             string description = Console.ReadLine();
             item.Description = description;
-
-            Console.WriteLine("");
-                return description;
+            
+            Console.WriteLine("What were your external triggers");
+            item.Externaltriggers = Console.ReadLine();
+            Console.WriteLine("What were your intternal triggers");
+            item.Internaltriggers = Console.ReadLine();
+            
         }
     }
 }

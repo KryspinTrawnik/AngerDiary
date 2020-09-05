@@ -6,7 +6,7 @@ namespace AngerDiary
 {
     public class Event
     {
-         public DateTime Timeofevent { get; set; }
+        public DateTime Timeofevent { get; set; }
 
         public string Description { get; set; }
 
@@ -16,8 +16,12 @@ namespace AngerDiary
 
         public string Externaltriggers { get; set; }
 
-        public string Bodysignals { get; set; }
+        public int Angersignals { get; set; }
 
+        public string Consequences { get; set; }
 
+        public int Selfevaluation { get; set; }
+
+        public string Selfcoaching { get; set; }
     }
 }
