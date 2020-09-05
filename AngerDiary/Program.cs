@@ -30,7 +30,7 @@ namespace AngerDiary
             {
                 Console.WriteLine($"{mainMenu[i].Id}. {mainMenu[i].Name}");
             }
-            var operation = Console.ReadKey();
+            var operation = Console.ReadLine();
             switch(operation.KeyChar)
             {
                 case '1':
