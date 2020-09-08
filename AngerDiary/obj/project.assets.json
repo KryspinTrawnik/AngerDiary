@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary\\AngerDiary\\AngerDiary.csproj",
+      "projectUniqueName": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary\\AngerDiary.csproj",
       "projectName": "AngerDiary",
-      "projectPath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary\\AngerDiary\\AngerDiary.csproj",
+      "projectPath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary\\AngerDiary.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary\\AngerDiary\\obj\\",
+      "outputPath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
