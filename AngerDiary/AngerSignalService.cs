@@ -7,9 +7,10 @@ namespace AngerDiary
     class AngerSignalService
     {
         private List<AngerSignal> angerSignals;
-        public AngerSignalService()
+        public AngerSignalService(List<AngerSignal> angerSignals)
+        
         {
-            angerSignals = new List<AngerSignal>();
+            this.angerSignals = angerSignals;
         }
         public void AddNewSignal(int id, string name)
         {
