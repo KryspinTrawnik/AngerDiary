@@ -12,9 +12,9 @@ namespace AngerDiary
         {
             this.angerSignals = angerSignals;
         }
-        public void AddNewSignal(int id, string name)
+        public void AddNewSignal(int id, string name, bool hasbeenused)
         {
-            AngerSignal angerSignal = new AngerSignal(id, name);
+            AngerSignal angerSignal = new AngerSignal(id, name, hasbeenused);
             angerSignals.Add(angerSignal);
         }
 

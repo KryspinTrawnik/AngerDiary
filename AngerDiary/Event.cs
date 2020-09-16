@@ -18,6 +18,10 @@ namespace AngerDiary
 
         public  List <AngerSignal> Angersignal { get; set; }
 
+        public int Angerreducer { get; set; }
+       
+        public string Positivetought { get; set; }
+
         public string Consequences { get; set; }
 
         public int Selfevaluation { get; set; }

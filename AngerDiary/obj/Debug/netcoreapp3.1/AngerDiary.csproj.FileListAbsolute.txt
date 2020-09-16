@@ -17,3 +17,10 @@ C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDi
 C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\obj\Debug\netcoreapp3.1\AngerDiary.csproj.CoreCompileInputs.cache
 C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\obj\Debug\netcoreapp3.1\AngerDiary.dll
 C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\obj\Debug\netcoreapp3.1\AngerDiary.pdb
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.exe
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.deps.json
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.runtimeconfig.json
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.runtimeconfig.dev.json
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.dll
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.pdb
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\obj\Debug\netcoreapp3.1\AngerDiary.genruntimeconfig.cache
