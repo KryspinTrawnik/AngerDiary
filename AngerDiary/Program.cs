@@ -34,8 +34,8 @@ namespace AngerDiary
             switch(operation.KeyChar)
             {
                 case '1':
-                    EventManeger.Menege();
-                  
+                    eventManeger.Menage(actionService);
+                                        
                     break;
                 case '2':
                     break;

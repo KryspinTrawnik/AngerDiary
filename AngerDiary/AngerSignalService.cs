@@ -17,7 +17,10 @@ namespace AngerDiary
             AngerSignal angerSignal = new AngerSignal(id, name, hasbeenused);
             angerSignals.Add(angerSignal);
         }
+        public List<AngerSignal> AddNotUsedSignal(bool hasbeenused)
+        {
 
+        }
 
     }
 }
