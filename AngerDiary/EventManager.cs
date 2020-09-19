@@ -65,9 +65,14 @@ namespace AngerDiary
 
         public void AddNewEventSignals()
         {
+            AngerSignalService angersignalService = new AngerSignalService();
+            angersignalService = Initialize(angersignalService);
             Console.WriteLine("Choose from below which of signals did you experience");
-            var angersignals = AngerSignalService
-
+            var angerSignals = angersignalService.AddNotUsedSignal(false);
+            for(int i = 0; angerSignals.Count < i; i++)
+            {
+                Console.WriteLine(value: $"{angerSignals[i].Signalid}. {angerSignals[i].Signalname}.");
+            }
         }
         private static AngerSignalService Initialize(AngerSignalService angersignalService)
         {
