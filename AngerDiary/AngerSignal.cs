@@ -9,7 +9,7 @@ namespace AngerDiary
 
        public int Signalid { get; set; }
 
-       public string SignalName { get; set; }
+       public string Signalname { get; set; }
 
         public bool Hasbeenused { get; set; }
 
@@ -20,12 +20,12 @@ namespace AngerDiary
         public AngerSignal(int id, string name)
         {
             Signalid = id;
-            SignalName = name;
+            Signalname = name;
         }
         public AngerSignal(int id, string name, bool hasbeenused)
         {
             Signalid = id;
-            SignalName = name;
+            Signalname = name;
             Hasbeenused = hasbeenused;
         }
         public AngerSignal()

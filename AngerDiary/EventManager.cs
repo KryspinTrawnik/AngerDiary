@@ -67,12 +67,58 @@ namespace AngerDiary
         {
             AngerSignalService angersignalService = new AngerSignalService();
             angersignalService = Initialize(angersignalService);
-            Console.WriteLine("Choose from below which of signals did you experience");
-            var angerSignals = angersignalService.AddNotUsedSignal(false);
-            for(int i = 0; angerSignals.Count < i; i++)
+            bool exit = true;
+            do
             {
-                Console.WriteLine(value: $"{angerSignals[i].Signalid}. {angerSignals[i].SignalName}.");
-            }
+                Console.WriteLine("Choose from below which of signals did you experience");
+                Console.WriteLine("When you finishd press 0");
+                var angerSignals = angersignalService.AddNotUsedSignal(false);
+                for (int i = 0; angerSignals.Count < i; i++)
+                {
+                    Console.WriteLine(value: $"{angerSignals[i].Signalid}. {angerSignals[i].Signalname}.");
+                }
+
+                var operation = Console.ReadKey();
+                switch (operation.KeyChar)
+                {
+                    case '1':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 1, Signalname = "Raised voice", Hasbeenused = true });
+                        break;
+                    case '2':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 2, Signalname = "Headaches", Hasbeenused = true });
+                        break;
+                    case '3':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 3, Signalname = "Stomachaches", Hasbeenused = true });
+                        break;
+                    case '4':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 4, Signalname = "Increased heart rate", Hasbeenused = true });
+                        break;
+                    case '5':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 5, Signalname = "Raised blood pressure", Hasbeenused = true });
+                        break;
+                    case '6':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 6, Signalname = "Clenching your jaws or grinding your teeth", Hasbeenused = true });
+                        break;
+                    case '7':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 7, Signalname = "Clinched fists", Hasbeenused = true });
+                        break;
+                    case '8':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 8, Signalname = "Sweating, especially your palms", Hasbeenused = true });
+                        break;
+                    case '9':
+                        _event.Angersignal.Add(new AngerSignal { Signalid = 9, Signalname = "Feeling hot in the neck/face", Hasbeenused = true });
+                        break;
+                    case '0':
+                        exit = false;
+                        break;
+                    default:
+                        Console.WriteLine("Your request does not exist");
+                        break;
+                }
+
+            
+            } while (!(exit == false));
+
         }
         
         private static AngerSignalService Initialize(AngerSignalService angersignalService)
