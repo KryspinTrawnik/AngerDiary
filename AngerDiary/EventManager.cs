@@ -71,9 +71,10 @@ namespace AngerDiary
             var angerSignals = angersignalService.AddNotUsedSignal(false);
             for(int i = 0; angerSignals.Count < i; i++)
             {
-                Console.WriteLine(value: $"{angerSignals[i].Signalid}. {angerSignals[i].Signalname}.");
+                Console.WriteLine(value: $"{angerSignals[i].Signalid}. {angerSignals[i].SignalName}.");
             }
         }
+        
         private static AngerSignalService Initialize(AngerSignalService angersignalService)
         {
             angersignalService.AddNewSignal(1, "Raised voice", false);

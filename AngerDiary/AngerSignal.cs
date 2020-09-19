@@ -7,11 +7,11 @@ namespace AngerDiary
     public class AngerSignal
     {
 
-        int Signalid { get; set; }
+       public int Signalid { get; set; }
 
-        string SignalName { get; set; }
+       public string SignalName { get; set; }
 
-        bool Hasbeenused { get; set; }
+        public bool Hasbeenused { get; set; }
 
         public AngerSignal(int id)
         {
