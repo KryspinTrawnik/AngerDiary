@@ -7,11 +7,11 @@ namespace AngerDiary
         private List<AngerSignal> angerSignals;
         
         public AngerSignalService()
-        { 
-        
+        {
+            this.angerSignals = new List<AngerSignal>();
         }
         public AngerSignalService(List<AngerSignal> angerSignals)
-        
+            :this()
         {
             this.angerSignals = angerSignals;
         }
@@ -20,7 +20,7 @@ namespace AngerDiary
             AngerSignal angerSignal = new AngerSignal(signalId, signalName, hasBeenUsed);
             angerSignals.Add(angerSignal);
         }
-        public List<AngerSignal> AddNotUsedSignal(bool hasBeenUsed)
+        public List<AngerSignal> AddNotUsedSignal()
         {
             List<AngerSignal> result = new List<AngerSignal>();
             foreach(var signal in angerSignals)
