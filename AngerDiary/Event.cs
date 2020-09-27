@@ -16,9 +16,9 @@ namespace AngerDiary
 
         public string Externaltriggers { get; set; }
 
-        public  List <AngerSignal> Angersignal { get; set; }
+        public  List <AngerSignal> Angersignals { get; set; }
 
-        public int Angerreducer { get; set; }
+        public List <Reducer> Reducers { get; set; }
        
         public string Positivetought { get; set; }
 

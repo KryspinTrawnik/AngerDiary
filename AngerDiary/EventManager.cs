@@ -69,10 +69,10 @@ namespace AngerDiary
         {
             AngerSignalService angersignalService = new AngerSignalService();
             angersignalService = Initialize(angersignalService);
-            _event.Angersignal = new List<AngerSignal>();
-            bool checkiflistisempty = _event.Angersignal.All(AngerSignal => AngerSignal.Signalid == 0);
+            _event.Angersignals = new List<AngerSignal>();
             bool exit = true;
-            List<string> usedoperation = new List<string>();
+            List<int> usedoperation = new List<int>();
+            
             do
             {
                 Console.WriteLine("Choose from below which of signals did you experience");
@@ -93,14 +93,14 @@ namespace AngerDiary
                     checksucessful = Int32.TryParse(givenoperation, out testoperation);
                     if (givenoperation != "0")
                     {
-                        usedoperation.Add(givenoperation);
+                        usedoperation.Add(testoperation);
                     }
                     notusedoperation = true;
                     if (testoperation > 10 || testoperation < 0 || checksucessful == false )
                     {
                         Console.WriteLine("Chosen id needs to be a number between 0 and 9");
                     }
-                    else if (usedoperation.FindAll(p => p == givenoperation).Count > 1)
+                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1)
                     {
                         Console.WriteLine("Chosen signal has already been used please choose another one or press 0 to finish");
                         notusedoperation = false;
@@ -115,43 +115,44 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 1, Signalname = "Raised voice", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 1, Signalname = "Raised voice", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 1).Hasbeenused = true;
                         break;
                     case 2:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 2, Signalname = "Headaches", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 2, Signalname = "Headaches", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 2).Hasbeenused = true;
                         break;
                     case 3:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 3, Signalname = "Stomachaches", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 3, Signalname = "Stomachaches", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 3).Hasbeenused = true;
                         break;
                     case 4:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 4, Signalname = "Increased heart rate", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 4, Signalname = "Increased heart rate", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 4).Hasbeenused = true;
                         break;
                     case 5:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 5, Signalname = "Raised blood pressure", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 5, Signalname = "Raised blood pressure", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 5).Hasbeenused = true;
                         break;
                     case 6:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 6, Signalname = "Clenching your jaws or grinding your teeth", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 6, Signalname = "Clenching your jaws or grinding your teeth", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 6).Hasbeenused = true;
                         break;
                     case 7:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 7, Signalname = "Clinched fists", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 7, Signalname = "Clinched fists", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 7).Hasbeenused = true;
                         break;
                     case 8:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 8, Signalname = "Sweating, especially your palms", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 8, Signalname = "Sweating, especially your palms", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 8).Hasbeenused = true;
                         break;
                     case 9:
-                        _event.Angersignal.Add(new AngerSignal { Signalid = 9, Signalname = "Feeling hot in the neck/face", Hasbeenused = true });
+                        _event.Angersignals.Add(new AngerSignal { Signalid = 9, Signalname = "Feeling hot in the neck/face", Hasbeenused = true });
                         angerSignals.Find(p => p.Signalid == 9).Hasbeenused = true;
                         break;
                     case 0:
-                        if (checkiflistisempty == true)
+                        double avaregeusedoperation = usedoperation.Average();
+                        if (avaregeusedoperation == 0)
                         {
                             Console.WriteLine("You need to use at least one signal");
                         }
