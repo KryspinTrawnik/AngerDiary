@@ -21,7 +21,7 @@ namespace AngerDiary
            
             MenuActionService actionService = new MenuActionService();
             actionService = Initialize(actionService);
-            EventManeger eventManeger = new EventManeger();
+            EventManager eventManeger = new EventManager();
             Console.WriteLine("Welcome to Anger Diary");
             Console.WriteLine("Hope you are alright");
             Console.WriteLine("Please let me know what would you like to do");

@@ -11,7 +11,7 @@ namespace AngerDiary
 
        public string Signalname { get; set; }
 
-        public bool Hasbeenused { get; set; }
+        public bool HasBeenUsed { get; set; }
 
         public AngerSignal(int id)
         {
@@ -26,7 +26,7 @@ namespace AngerDiary
         {
             Signalid = id;
             Signalname = name;
-            Hasbeenused = hasbeenused;
+            HasBeenUsed = hasbeenused;
         }
         public AngerSignal()
         {

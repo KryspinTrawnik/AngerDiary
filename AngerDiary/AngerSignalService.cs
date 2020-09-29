@@ -25,7 +25,7 @@ namespace AngerDiary
             List<AngerSignal> result = new List<AngerSignal>();
             foreach(var signal in angerSignals)
             {
-                if (signal.Hasbeenused == false)
+                if (signal.HasBeenUsed == false)
                 {
                     result.Add(signal);
                 }
