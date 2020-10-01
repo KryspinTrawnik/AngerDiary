@@ -6,21 +6,21 @@ namespace AngerDiary
 {
     public class MenuActionService
     {
-        private List<MenuAction> menuActions;
+        private List<MenuAction> _menuActions;
         public MenuActionService()
         {
-            menuActions = new List<MenuAction>();
+            _menuActions = new List<MenuAction>();
         }
         public void AddNewAction(int id, string name, string menuName)
         {
             MenuAction menuAction = new MenuAction(id, name) {MenuName = menuName };
-            menuActions.Add(menuAction);
+            _menuActions.Add(menuAction);
         }
 
         public List<MenuAction> GetMenuActionsByMenuName(string menuName)
         {
             List<MenuAction> result = new List<MenuAction>();
-            foreach(var menuAction in menuActions)
+            foreach(var menuAction in _menuActions)
             {
                 if(menuAction.MenuName == menuName)
                 {

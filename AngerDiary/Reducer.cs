@@ -4,28 +4,28 @@ using System.Text;
 
 namespace AngerDiary
 {
-    class Reducer
+    public class Reducer
     {
-        public int Reducerid { get; set; }
+        public int reducerId { get; set; }
 
-        public string Reducername { get; set; }
+        public string reducerName { get; set; }
 
-        public bool Hasbeenused { get; set; }
+        public bool hasBeenUsed { get; set; }
 
         public Reducer(int id)
         {
-            Reducerid = id;
+            reducerId = id;
         }
         public Reducer(int id, string name)
         {
-           Reducerid = id;
-           Reducername = name;
+           reducerId = id;
+           reducerName = name;
         }
         public Reducer(int id, string name, bool hasbeenused)
         {
-            Reducerid= id;
-            Reducername = name;
-            Hasbeenused = hasbeenused;
+            reducerId= id;
+            reducerName = name;
+            hasBeenUsed = hasbeenused;
         }
         public Reducer()
         {

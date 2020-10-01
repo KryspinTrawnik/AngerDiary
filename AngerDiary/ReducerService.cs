@@ -6,28 +6,28 @@ namespace AngerDiary
 {
     class ReducerService
     {
-        private List<Reducer> reducers;
+        private List<Reducer> _reducers;
 
         public ReducerService()
         {
-            this.reducers = new List<Reducer>();
+            this._reducers = new List<Reducer>();
         }
         public ReducerService(List<Reducer> reducers)
             : this()
         {
-            this.reducers = reducers;
+            this._reducers = reducers;
         }
         public void AddNewReducer(int reducerId, string reducerName, bool hasBeenUsed)
         {
             Reducer reducer = new Reducer(reducerId, reducerName, hasBeenUsed);
-            reducers.Add(reducer);
+            _reducers.Add(reducer);
         }
         public List<Reducer> AddNotUsedReducer()
         {
             List<Reducer> result = new List<Reducer>();
-            foreach (var reducer in reducers)
+            foreach (var reducer in _reducers)
             {
-                if (reducer.Hasbeenused == false)
+                if (reducer.hasBeenUsed == false)
                 {
                     result.Add(reducer);
                 }

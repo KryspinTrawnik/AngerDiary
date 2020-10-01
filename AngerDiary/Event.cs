@@ -24,7 +24,7 @@ namespace AngerDiary
 
         public string Consequences { get; set; }
 
-        public int Selfevaluation { get; set; }
+        public List <Stage> Selfevaluation { get; set; }
 
         public string Selfcoaching { get; set; }
     }

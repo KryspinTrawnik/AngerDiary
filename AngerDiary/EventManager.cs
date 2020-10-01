@@ -21,7 +21,9 @@ namespace AngerDiary
             AddNewEventDate();
             AddNewEventDescribtion();
             AddNewEventSignals();
-            AddNewEventSummary();
+            AddNewEventReducer();
+            AddNewEventConsequences();
+            AddNewEventSelfEvaluation();
         }
 
         public void AddNewEventDate()
@@ -78,9 +80,9 @@ namespace AngerDiary
                 Console.WriteLine("Choose from below which of signals did you experience");
                 Console.WriteLine("When you finishd press 0");
                 var angerSignals = angersignalService.AddNotUsedSignal();
-                for (int i = 0; i < angerSignals.Count  ; i++)
+                foreach (var signal in angerSignals)
                 {
-                    Console.WriteLine($"{angerSignals[i].Signalid}. {angerSignals[i].Signalname}.");
+                    Console.WriteLine($"{signal.Signalid}. {signal.Signalname}.");
                 }
                 int operation = 0;
                 int testoperation = 0;
@@ -91,11 +93,12 @@ namespace AngerDiary
                 {
                     string givenoperation = Console.ReadLine();
                     checksucessful = Int32.TryParse(givenoperation, out testoperation);
+                    notusedoperation = true;
                     if (givenoperation != "0")
                     {
                         usedoperation.Add(testoperation);
                     }
-                    notusedoperation = true;
+                    
                     if (testoperation > 10 || testoperation < 0 || checksucessful == false )
                     {
                         Console.WriteLine("Chosen id needs to be a number between 0 and 9");
@@ -186,7 +189,102 @@ namespace AngerDiary
 
             return angersignalService;
         }
-        public void AddNewEventSummary()
+        public void AddNewEventReducer()
+        {
+            ReducerService reducerService = new ReducerService();
+           reducerService = ReducerInitialize(reducerService);
+            _event.Reducers = new List<Reducer>();
+            bool exit = true;
+            List<int> usedoperation = new List<int>();
+            do
+            {
+                Console.WriteLine("Choose from below which of reducers did you used");
+                Console.WriteLine("When you finishd press 0");
+                var reducers = reducerService.AddNotUsedReducer();
+                foreach (var reducer in reducers)
+                {
+                    Console.WriteLine($"{reducer.reducerId}. {reducer.reducerName}.");
+                }
+                int operation = 0;
+                int testoperation = 0;
+                bool checksucessful;
+                bool notusedoperation;
+                do
+                {
+                    string givenoperation = Console.ReadLine();
+                    checksucessful = Int32.TryParse(givenoperation, out testoperation);
+                    notusedoperation = true;
+                    if (givenoperation != "0")
+                    {
+                        usedoperation.Add(testoperation);
+                    }
+
+                    if (testoperation > 4 || testoperation < 0 || checksucessful == false)
+                    {
+                        Console.WriteLine("Chosen id needs to be a number between 0 and 4");
+                    }
+                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1)
+                    {
+                        Console.WriteLine("Chosen signal has already been used please choose another one or press 0 to finish");
+                        notusedoperation = false;
+                    }
+                    else
+                    {
+                        notusedoperation = true;
+                        operation = testoperation;
+                    }
+                } while (!(checksucessful && notusedoperation));
+                switch (operation)
+                {
+                    case 1:
+                        _event.Reducers.Add(new Reducer { reducerId = 1, reducerName = "Raised voice", hasBeenUsed = true });
+                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        break;
+                    case 2:
+                        _event.Reducers.Add(new Reducer { reducerId = 2, reducerName = "Deep breathing", hasBeenUsed = true });
+                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        break;
+                    case 3:
+                        _event.Reducers.Add(new Reducer { reducerId = 3, reducerName = "Thinking ahead (if - consequences)", hasBeenUsed = true });
+                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        break;
+                    case 4:
+                        _event.Reducers.Add(new Reducer { reducerId = 4, reducerName = "Positive visualisation", hasBeenUsed = true });
+                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        break;
+                    case 0:
+                        double avaregeusedoperation = usedoperation.Average();
+                        if (avaregeusedoperation == 0)
+                        {
+                            Console.WriteLine("You need to use at least one signal");
+                        }
+                        else
+                        {
+                            usedoperation.Clear();
+                            exit = false;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Your request does not exist");
+                        break;
+                }
+
+            } while (!exit);
+        }
+         private static ReducerService ReducerInitialize(ReducerService reducerService)
+        {
+            reducerService.AddNewReducer(1, "Counting backward", false);
+            reducerService.AddNewReducer(2, "Deep breathing", false);
+            reducerService.AddNewReducer(3, "Thinking ahead (if - consequences)", false);
+            reducerService.AddNewReducer(4, "Positive visualisation", false);
+            return reducerService;
+        }
+        public void AddNewEventConsequences()
+        {
+            Console.WriteLine("What were positive or negative cosnequences of your behaviour?");
+            _event.Consequences = Console.ReadLine();
+        }
+        public void AddNewEventSelfEvaluation()
         {
 
         }
