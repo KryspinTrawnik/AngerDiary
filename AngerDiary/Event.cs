@@ -6,6 +6,8 @@ namespace AngerDiary
 {
     public class Event
     {
+        public long Id { get; set; }
+
         public DateTime Timeofevent { get; set; }
 
         public string Description { get; set; }
@@ -20,7 +22,7 @@ namespace AngerDiary
 
         public List <Reducer> Reducers { get; set; }
        
-        public string Positivetought { get; set; }
+        public string Selfinstruction { get; set; }
 
         public string Consequences { get; set; }
 

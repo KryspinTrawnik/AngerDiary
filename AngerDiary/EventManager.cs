@@ -18,12 +18,20 @@ namespace AngerDiary
 
         public void Menage(MenuActionService actionService)
         {
+            AddNewEventId();
             AddNewEventDate();
             AddNewEventDescribtion();
             AddNewEventSignals();
             AddNewEventReducer();
+            AddNewEventSelfInstruction();
             AddNewEventConsequences();
             AddNewEventSelfEvaluation();
+            AddNewEventSelfCoaching();
+        }
+
+        public void AddNewEventId()
+        {// to nie wiem jeszcze jak zrobic zeby automatycznie dodalo nowe id z wartoscia od 1 wieksze od poprzedniego
+            EventService eventService = new List<Event>();
         }
 
         public void AddNewEventDate()
@@ -103,7 +111,7 @@ namespace AngerDiary
                     {
                         Console.WriteLine("Chosen id needs to be a number between 0 and 9");
                     }
-                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1)
+                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1 && givenoperation != "0")
                     {
                         Console.WriteLine("Chosen signal has already been used please choose another one or press 0 to finish");
                         notusedoperation = false;
@@ -223,7 +231,7 @@ namespace AngerDiary
                     {
                         Console.WriteLine("Chosen id needs to be a number between 0 and 4");
                     }
-                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1)
+                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1 && givenoperation != "0")
                     {
                         Console.WriteLine("Chosen signal has already been used please choose another one or press 0 to finish");
                         notusedoperation = false;
@@ -256,7 +264,7 @@ namespace AngerDiary
                         double avaregeusedoperation = usedoperation.Average();
                         if (avaregeusedoperation == 0)
                         {
-                            Console.WriteLine("You need to use at least one signal");
+                            Console.WriteLine("You need to use at least one reducer");
                         }
                         else
                         {
@@ -269,7 +277,7 @@ namespace AngerDiary
                         break;
                 }
 
-            } while (!exit);
+            } while (!(exit == false));
         }
          private static ReducerService ReducerInitialize(ReducerService reducerService)
         {
@@ -279,6 +287,12 @@ namespace AngerDiary
             reducerService.AddNewReducer(4, "Positive visualisation", false);
             return reducerService;
         }
+        public void AddNewEventSelfInstruction()
+        {
+            Console.WriteLine("What was your self-instruction thoughts?");
+            _event.Selfinstruction = Console.ReadLine();
+        }
+
         public void AddNewEventConsequences()
         {
             Console.WriteLine("What were positive or negative cosnequences of your behaviour?");
@@ -286,8 +300,113 @@ namespace AngerDiary
         }
         public void AddNewEventSelfEvaluation()
         {
+            StageService stageService = new StageService();
+            stageService = StageInitialize(stageService);
+            _event.Selfevaluation = new List<Stage>();
+            bool exit = true;
+            List<int> usedoperation = new List<int>();
+            
+            do
+            {
+                Console.WriteLine("With which stages have you done well? Choose from below");
+                Console.WriteLine("When you finishd press 0");
+                var stages = stageService.AddNotUsedStage();
+                foreach (var stage in stages)
+                {
+                    Console.WriteLine($"{stage.StageId}. {stage.StageName}.");
+                }
+                int operation = 0;
+                int testoperation = 0;
+                bool checksucessful;
+                bool notusedoperation;
+                do
+                {
+                    string givenoperation = Console.ReadLine();
+                    checksucessful = Int32.TryParse(givenoperation, out testoperation);
+                    notusedoperation = true;
+                    if (givenoperation != "0")
+                    {
+                        usedoperation.Add(testoperation);
+                    }
 
+                    if (testoperation > 6 || testoperation < 0 || checksucessful == false)
+                    {
+                        Console.WriteLine("Chosen id needs to be a number between 0 and 6");
+                    }
+                    else if (usedoperation.FindAll(p => p == testoperation).Count > 1)
+                    {
+                        Console.WriteLine("Chosen option has already been used please choose another one or press 0 to finish");
+                        notusedoperation = false;
+                    }
+                    else
+                    {
+                        notusedoperation = true;
+                        operation = testoperation;
+                    }
+                } while (!(checksucessful && notusedoperation));
+                switch (operation)
+                {
+                    case 1:
+                        _event.Selfevaluation.Add(new Stage { StageId = 1,StageName = "Recognizing triggers", HasBeenUsed = true });
+                        stages.Find(p => p.StageId == 1).HasBeenUsed = true;
+                        break;
+                    case 2:
+                        _event.Selfevaluation.Add(new Stage { StageId = 2, StageName = "Recognizing signals of anger", HasBeenUsed = true });
+                        stages.Find(p => p.StageId == 2).HasBeenUsed = true;
+                        break;
+                    case 3:
+                        _event.Selfevaluation.Add(new Stage { StageId = 3, StageName = "Using anger reducers", HasBeenUsed = true });
+                        stages.Find(p => p.StageId == 3).HasBeenUsed = true;
+                        break;
+                    case 4:
+                        _event.Selfevaluation.Add(new Stage { StageId = 4, StageName = "Self-instruction to keep yourself calm", HasBeenUsed = true });
+                        stages.Find(p => p.StageId == 4).HasBeenUsed = true;
+                        break;
+                    case 5:
+                        _event.Selfevaluation.Add(new Stage { StageId = 5, StageName = "Self-rewarding for good effort", HasBeenUsed = true });
+                        stages.Find(p => p.StageId == 5).HasBeenUsed = true;
+                        break;
+                    case 6:
+                        _event.Selfevaluation.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });
+                        stages.Find(p => p.StageId == 6).HasBeenUsed = true;
+                        break;
+                    case 0:
+                        double avaregeusedoperation = usedoperation.Average();
+                        if (avaregeusedoperation == 0)
+                        {
+                            Console.WriteLine("You need to use at least one stage");
+                        }
+                        else
+                        {
+                            usedoperation.Clear();
+                            exit = false;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("Your request does not exist");
+                        break;
+                }
+
+            } while (!(exit == false));
         }
 
+        private static StageService StageInitialize(StageService stageService)
+        {
+            stageService.AddNewStage(1, "Recognizing triggers", false);
+            stageService.AddNewStage(2, "Recognizing signals of anger", false);
+            stageService.AddNewStage(3, "Using anger reducers", false);
+            stageService.AddNewStage(4, "Self-instruction to keep yourself calm", false);
+            stageService.AddNewStage(5, "Self-rewarding for good effort", false);
+            stageService.AddNewStage(6, "Looking at the good or bad consequences", false);
+
+            return stageService;
+        }
+        
+        public void AddNewEventSelfCoaching()
+        {
+            Console.WriteLine("What would you improve in your behavior");
+            _event.Selfcoaching = Console.ReadLine();
+                
+        }
     }
 }

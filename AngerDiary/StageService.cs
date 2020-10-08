@@ -12,10 +12,10 @@ namespace AngerDiary
         {
             this._stages = new List<Stage>();
         }
-        public StageService(List<Stage> _stages)
+        public StageService(List<Stage> stages)
             : this()
         {
-            this._stages = _stages;
+            this._stages = stages;
         }
         public void AddNewStage(int stageId, string stageName, bool hasBeenUsed)
         {
@@ -27,7 +27,7 @@ namespace AngerDiary
             List<Stage> result = new List<Stage>();
             foreach (var stage in _stages)
             {
-                if (stage.hasBeenUsed == false)
+                if (stage.HasBeenUsed == false)
                 {
                     result.Add(stage);
                 }

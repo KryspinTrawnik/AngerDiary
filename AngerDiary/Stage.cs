@@ -2,26 +2,26 @@
 {
     public class Stage
     {
-        public int stageId { get; set; }
+        public int StageId { get; set; }
 
-        public string stageName { get; set; }
+        public string StageName { get; set; }
 
-        public bool hasBeenUsed { get; set; }
+        public bool HasBeenUsed { get; set; }
 
         public Stage(int id)
         {
-            stageId = id;
+            StageId = id;
         }
         public Stage(int id, string name)
         {
-            stageId = id;
-            stageName = name;
+            StageId = id;
+            StageName = name;
         }
         public Stage(int id, string name, bool hasbeenused)
         {
-            stageId = id;
-            stageName = name;
-            hasBeenUsed = hasbeenused;
+            StageId = id;
+            StageName = name;
+            HasBeenUsed = hasbeenused;
         }
         public Stage()
         {

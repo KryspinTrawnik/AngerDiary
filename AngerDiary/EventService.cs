@@ -7,10 +7,10 @@ namespace AngerDiary
 {
     public class EventService
     {
-        public List<Event> Items { get; set; }
+        public List<Event> Events { get; set; }
         public EventService()
         {
-            Items = new List<Event>();
+            Events = new List<Event>();
 
         }
         
