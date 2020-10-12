@@ -13,7 +13,32 @@ namespace AngerDiary
             Events = new List<Event>();
 
         }
-        
-       
+
+
+        public void Add(Event newEvent)
+        {
+            
+            long max = 0;
+            if (Events.Count < 1)
+                newEvent.Id = 1;
+            else
+            {
+                foreach (var item in Events)
+                {
+                    if (item.Id >= max)
+                    {
+                       newEvent.Id = item.Id + 1;
+                        max = item.Id;
+                    }
+                }
+            }
+           
+            Events.Add(newEvent);
+        }
+
+        public void EventView()
+        {
+
+        }
     }
 }

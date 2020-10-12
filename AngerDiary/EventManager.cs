@@ -9,16 +9,11 @@ namespace AngerDiary
         private Event _event;
         public EventManager()
         {
-            this._event = new Event();
-        }
-        public EventManager(Event _event)
-        {
-            this._event = _event;
+            _event = new Event();
         }
 
-        public void Menage(MenuActionService actionService)
+        public Event Menage()
         {
-            AddNewEventId();
             AddNewEventDate();
             AddNewEventDescribtion();
             AddNewEventSignals();
@@ -27,12 +22,8 @@ namespace AngerDiary
             AddNewEventConsequences();
             AddNewEventSelfEvaluation();
             AddNewEventSelfCoaching();
-        }
-
-        public void AddNewEventId()
-        {// to nie wiem jeszcze jak zrobic zeby automatycznie dodalo nowe id z wartoscia od 1 wieksze od poprzedniego
-            EventService eventService = new List<Event>();
-        }
+            return _event;
+        } 
 
         public void AddNewEventDate()
         {
@@ -250,15 +241,15 @@ namespace AngerDiary
                         break;
                     case 2:
                         _event.Reducers.Add(new Reducer { reducerId = 2, reducerName = "Deep breathing", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        reducers.Find(p => p.reducerId == 2).hasBeenUsed = true;
                         break;
                     case 3:
                         _event.Reducers.Add(new Reducer { reducerId = 3, reducerName = "Thinking ahead (if - consequences)", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        reducers.Find(p => p.reducerId == 3).hasBeenUsed = true;
                         break;
                     case 4:
                         _event.Reducers.Add(new Reducer { reducerId = 4, reducerName = "Positive visualisation", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        reducers.Find(p => p.reducerId == 4).hasBeenUsed = true;
                         break;
                     case 0:
                         double avaregeusedoperation = usedoperation.Average();

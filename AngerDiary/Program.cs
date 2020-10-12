@@ -18,38 +18,47 @@ namespace AngerDiary
             ///// b3 edycja??
             ///// c1 zapytanie o przedzial tydzien/ 2tyg/msc/ kwartal/ rok
             ///// c2 wyswietlenie sredniej natezenia , najczesciej stosowana metoda, inne
-           
+
             MenuActionService actionService = new MenuActionService();
             actionService = Initialize(actionService);
             EventManager eventManeger = new EventManager();
-            Console.WriteLine("Welcome to Anger Diary");
-            Console.WriteLine("Hope you are alright");
-            Console.WriteLine("Please let me know what would you like to do");
-            var mainMenu = actionService.GetMenuActionsByMenuName("Main");
-            for(int i = 0; i < mainMenu.Count; i++)
+            EventService eventService = new EventService();
+            bool exit = false;
+            do
             {
-                Console.WriteLine($"{mainMenu[i].Id}. {mainMenu[i].Name}");
-            }
-            var operation = Console.ReadKey();
-            switch(operation.KeyChar)
-            {
-                case '1':
-                    eventManeger.Menage(actionService);
-                                        
-                    break;
-                case '2':
-                    break;
-                case '3':
-                    break;
-                case '4':
-                    break;
-                default:
-                    Console.WriteLine("Your request does not exist");
-                    break;
+                Console.WriteLine("Welcome to Anger Diary");
+                Console.WriteLine("Hope you are alright");
+                Console.WriteLine("Please let me know what would you like to do");
+                Console.WriteLine("When you finished press 5");
+                var mainMenu = actionService.GetMenuActionsByMenuName("Main");
+                for (int i = 0; i < mainMenu.Count; i++)
+                {
+                    Console.WriteLine($"{mainMenu[i].Id}. {mainMenu[i].Name}");
+                }
+                var operation = Console.ReadKey();
+                switch (operation.KeyChar)
+                {
+                    case '1':
+                        var newEvent = eventManeger.Menage();
+                        eventService.Add(newEvent);
+                        break;
+                    case '2':
 
-            }
-        }
+                        break;
+                    case '3':
+                        break;
+                    case '4':
+                        break;
+                    case '5':
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Your request does not exist");
+                        break;
 
+                }
+            } while (exit == false);
+         }   
         private static MenuActionService Initialize(MenuActionService actionService)
         {
             actionService.AddNewAction(1, "Add new event", "Main");
