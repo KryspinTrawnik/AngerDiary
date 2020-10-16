@@ -29,5 +29,35 @@ namespace AngerDiary
         public List <Stage> Selfevaluation { get; set; }
 
         public string Selfcoaching { get; set; }
+
+        public Event(Event oldEvent)
+        :this()
+        {
+            Id = oldEvent.Id;
+            Timeofevent = oldEvent.Timeofevent;
+            Description = oldEvent.Description;
+            Angerlevel = oldEvent.Angerlevel;
+            Internaltriggers = oldEvent.Internaltriggers;
+            Externaltriggers = oldEvent.Externaltriggers;
+            Angersignals = oldEvent.Angersignals;
+            Reducers = oldEvent.Reducers;
+            Selfinstruction = oldEvent.Selfinstruction;
+            Consequences = oldEvent.Consequences;
+            Selfevaluation = oldEvent.Selfevaluation;
+            Selfcoaching = oldEvent.Selfcoaching;
+        }
+
+        public Event()
+        {
+            Angersignals = new List<AngerSignal>();
+            Reducers = new List<Reducer>();
+            Selfevaluation = new List<Stage>();
+
+        }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
+
 }

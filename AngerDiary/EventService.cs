@@ -17,23 +17,18 @@ namespace AngerDiary
 
         public void Add(Event newEvent)
         {
-            
-            long max = 0;
-            if (Events.Count < 1)
+            if (Events.Count == 0)
+            {
                 newEvent.Id = 1;
+            }
             else
             {
-                foreach (var item in Events)
-                {
-                    if (item.Id >= max)
-                    {
-                       newEvent.Id = item.Id + 1;
-                        max = item.Id;
-                    }
-                }
+                newEvent.Id = Events.Count + 1;
             }
-           
-            Events.Add(newEvent);
+            
+            Events.Add(new Event(newEvent));
+            
+            
         }
 
         public void EventView()

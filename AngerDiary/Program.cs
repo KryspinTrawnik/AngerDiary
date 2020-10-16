@@ -43,7 +43,7 @@ namespace AngerDiary
                         eventService.Add(newEvent);
                         break;
                     case '2':
-
+                        eventService.Events.ForEach(x => Console.WriteLine(x.ToString()));
                         break;
                     case '3':
                         break;
