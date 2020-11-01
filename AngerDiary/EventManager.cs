@@ -71,7 +71,7 @@ namespace AngerDiary
             AngerSignalService angersignalService = new AngerSignalService();
             angersignalService = Initialize(angersignalService);
             _event.Angersignals = new List<AngerSignal>();
-            bool exit = true;
+            bool exit = false;
             List<int> usedoperation = new List<int>();
             
             do
@@ -161,7 +161,7 @@ namespace AngerDiary
                         else
                         {
                             usedoperation.Clear();
-                            exit = false;
+                            exit = true;
                         }
                         break;
                     default:
@@ -170,7 +170,7 @@ namespace AngerDiary
                 }
 
             
-            } while (!(exit == false));
+            } while (!(exit == true));
 
         }
         
@@ -193,7 +193,7 @@ namespace AngerDiary
             ReducerService reducerService = new ReducerService();
            reducerService = ReducerInitialize(reducerService);
             _event.Reducers = new List<Reducer>();
-            bool exit = true;
+            bool exit = false;
             List<int> usedoperation = new List<int>();
             do
             {
@@ -260,7 +260,7 @@ namespace AngerDiary
                         else
                         {
                             usedoperation.Clear();
-                            exit = false;
+                            exit = true;
                         }
                         break;
                     default:
@@ -268,7 +268,7 @@ namespace AngerDiary
                         break;
                 }
 
-            } while (!(exit == false));
+            } while (!(exit == true));
         }
          private static ReducerService ReducerInitialize(ReducerService reducerService)
         {
@@ -294,7 +294,7 @@ namespace AngerDiary
             StageService stageService = new StageService();
             stageService = StageInitialize(stageService);
             _event.Selfevaluation = new List<Stage>();
-            bool exit = true;
+            bool exit = false;
             List<int> usedoperation = new List<int>();
             
             do
@@ -314,7 +314,7 @@ namespace AngerDiary
                 {
                     string givenoperation = Console.ReadLine();
                     checksucessful = Int32.TryParse(givenoperation, out testoperation);
-                    notusedoperation = true;
+                    notusedoperation = false;
                     if (givenoperation != "0")
                     {
                         usedoperation.Add(testoperation);
@@ -370,7 +370,7 @@ namespace AngerDiary
                         else
                         {
                             usedoperation.Clear();
-                            exit = false;
+                            exit = true;
                         }
                         break;
                     default:
@@ -378,7 +378,7 @@ namespace AngerDiary
                         break;
                 }
 
-            } while (!(exit == false));
+            } while (!(exit == true));
         }
 
         private static StageService StageInitialize(StageService stageService)

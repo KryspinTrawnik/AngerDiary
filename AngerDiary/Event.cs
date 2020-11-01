@@ -6,7 +6,7 @@ namespace AngerDiary
 {
     public class Event
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime Timeofevent { get; set; }
 
