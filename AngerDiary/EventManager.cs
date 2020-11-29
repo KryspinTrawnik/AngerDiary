@@ -14,50 +14,62 @@ namespace AngerDiary
 
         public Event Menage()
         {
-            AddNewEventDate();
-            AddNewEventDescribtion();
-            AddNewEventSignals();
-            AddNewEventReducer();
-            AddNewEventSelfInstruction();
-            AddNewEventConsequences();
-            AddNewEventSelfEvaluation();
-            AddNewEventSelfCoaching();
-            return _event;
+            Event @event = new Event();
+            
+                AddNewEventDate(@event);
+                AddNewEventDescribtion(@event);
+                AddNewEventSignals(@event);
+                AddNewEventReducer(@event);
+                AddNewEventSelfInstruction(@event);
+                AddNewEventConsequences(@event);
+                AddNewEventSelfEvaluation(@event);
+                AddNewEventSelfCoaching(@event);
+            
+            return @event;
         } 
 
-        public void AddNewEventDate()
+        public void AddNewEventDate(Event @event)
         {
+            
             DateTime timeofevent;
             bool checksucessful;
             do
             {
                 Console.WriteLine("Please, enter date and time of a new event");
                 Console.WriteLine("Please, use format YYYY/MM/DD HH:MM  (Time needs to be in 24Hrs format)");
+                Console.WriteLine();
                 string giventime = Console.ReadLine();
                 checksucessful = DateTime.TryParse(giventime, out timeofevent);
             }
             while (!checksucessful);
-            _event.Timeofevent = timeofevent;
+            @event.TimeOfEvent = timeofevent;
+           
+       
         }
 
-        public void AddNewEventDescribtion()
+        public void AddNewEventDescribtion(Event @event)
+
         {
             Console.WriteLine("Describe the event:");
+            Console.WriteLine();
             string description = Console.ReadLine();
-            _event.Description = description;
+            @event.Description = description;
 
             Console.WriteLine("What were your external triggers");
-            _event.Externaltriggers = Console.ReadLine();
+            Console.WriteLine();
+            @event.ExternalTriggers = Console.ReadLine();
             Console.WriteLine("What were your intternal triggers");
-            _event.Internaltriggers = Console.ReadLine();
+            Console.WriteLine();
+            @event.InternalTriggers = Console.ReadLine();
             bool checksucessful;
             int angerlevel;
             do
             {
                 Console.WriteLine("How angry were you in scale 0 to 10");
+                Console.WriteLine();
                 string givenangerlevel = Console.ReadLine();
                 checksucessful = Int32.TryParse(givenangerlevel, out angerlevel);
-                _event.Angerlevel = angerlevel;
+               @event.AngerLevel = angerlevel;
                 if (angerlevel > 10 || angerlevel < 0)
                 {
                     Console.WriteLine("Anger level needs to be between 0 and 10");
@@ -66,11 +78,11 @@ namespace AngerDiary
             while (!((angerlevel < 10 && angerlevel > 0 )&& checksucessful));
         }
 
-        public void AddNewEventSignals()
+        public void AddNewEventSignals(Event @event)
         {
             AngerSignalService angersignalService = new AngerSignalService();
             angersignalService = Initialize(angersignalService);
-            _event.Angersignals = new List<AngerSignal>();
+            @event.AngerSignals = new List<AngerSignal>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
             
@@ -78,6 +90,7 @@ namespace AngerDiary
             {
                 Console.WriteLine("Choose from below which of signals did you experience");
                 Console.WriteLine("When you finishd press 0");
+                Console.WriteLine();
                 var angerSignals = angersignalService.AddNotUsedSignal();
                 foreach (var signal in angerSignals)
                 {
@@ -117,39 +130,39 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 1, Signalname = "Raised voice", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 1, Signalname = "Raised voice", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 1).HasBeenUsed = true;
                         break;
                     case 2:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 2, Signalname = "Headaches", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 2, Signalname = "Headaches", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 2).HasBeenUsed = true;
                         break;
                     case 3:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 3, Signalname = "Stomachaches", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 3, Signalname = "Stomachaches", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 3).HasBeenUsed = true;
                         break;
                     case 4:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 4, Signalname = "Increased heart rate", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 4, Signalname = "Increased heart rate", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 4).HasBeenUsed = true;
                         break;
                     case 5:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 5, Signalname = "Raised blood pressure", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 5, Signalname = "Raised blood pressure", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 5).HasBeenUsed = true;
                         break;
                     case 6:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 6, Signalname = "Clenching your jaws or grinding your teeth", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 6, Signalname = "Clenching your jaws or grinding your teeth", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 6).HasBeenUsed = true;
                         break;
                     case 7:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 7, Signalname = "Clinched fists", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 7, Signalname = "Clinched fists", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 7).HasBeenUsed = true;
                         break;
                     case 8:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 8, Signalname = "Sweating, especially your palms", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 8, Signalname = "Sweating, especially your palms", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 8).HasBeenUsed = true;
                         break;
                     case 9:
-                        _event.Angersignals.Add(new AngerSignal { Signalid = 9, Signalname = "Feeling hot in the neck/face", HasBeenUsed = true });
+                        @event.AngerSignals.Add(new AngerSignal { Signalid = 9, Signalname = "Feeling hot in the neck/face", HasBeenUsed = true });
                         angerSignals.Find(p => p.Signalid == 9).HasBeenUsed = true;
                         break;
                     case 0:
@@ -188,17 +201,18 @@ namespace AngerDiary
 
             return angersignalService;
         }
-        public void AddNewEventReducer()
+        public void AddNewEventReducer(Event @event)
         {
             ReducerService reducerService = new ReducerService();
            reducerService = ReducerInitialize(reducerService);
-            _event.Reducers = new List<Reducer>();
+            @event.Reducers = new List<Reducer>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
             do
             {
                 Console.WriteLine("Choose from below which of reducers did you used");
                 Console.WriteLine("When you finishd press 0");
+                Console.WriteLine();
                 var reducers = reducerService.AddNotUsedReducer();
                 foreach (var reducer in reducers)
                 {
@@ -236,19 +250,19 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        _event.Reducers.Add(new Reducer { reducerId = 1, reducerName = "Raised voice", hasBeenUsed = true });
+                        @event.Reducers.Add(new Reducer { reducerId = 1, reducerName = "Raised voice", hasBeenUsed = true });
                         reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
                         break;
                     case 2:
-                        _event.Reducers.Add(new Reducer { reducerId = 2, reducerName = "Deep breathing", hasBeenUsed = true });
+                        @event.Reducers.Add(new Reducer { reducerId = 2, reducerName = "Deep breathing", hasBeenUsed = true });
                         reducers.Find(p => p.reducerId == 2).hasBeenUsed = true;
                         break;
                     case 3:
-                        _event.Reducers.Add(new Reducer { reducerId = 3, reducerName = "Thinking ahead (if - consequences)", hasBeenUsed = true });
+                        @event.Reducers.Add(new Reducer { reducerId = 3, reducerName = "Thinking ahead (if - consequences)", hasBeenUsed = true });
                         reducers.Find(p => p.reducerId == 3).hasBeenUsed = true;
                         break;
                     case 4:
-                        _event.Reducers.Add(new Reducer { reducerId = 4, reducerName = "Positive visualisation", hasBeenUsed = true });
+                        @event.Reducers.Add(new Reducer { reducerId = 4, reducerName = "Positive visualisation", hasBeenUsed = true });
                         reducers.Find(p => p.reducerId == 4).hasBeenUsed = true;
                         break;
                     case 0:
@@ -278,22 +292,23 @@ namespace AngerDiary
             reducerService.AddNewReducer(4, "Positive visualisation", false);
             return reducerService;
         }
-        public void AddNewEventSelfInstruction()
+        public void AddNewEventSelfInstruction(Event @event)
         {
             Console.WriteLine("What was your self-instruction thoughts?");
-            _event.Selfinstruction = Console.ReadLine();
+            @event.SelfInstruction = Console.ReadLine();
         }
 
-        public void AddNewEventConsequences()
+        public void AddNewEventConsequences(Event @event)
         {
             Console.WriteLine("What were positive or negative cosnequences of your behaviour?");
-            _event.Consequences = Console.ReadLine();
+            Console.WriteLine();
+            @event.Consequences = Console.ReadLine();
         }
-        public void AddNewEventSelfEvaluation()
+        public void AddNewEventSelfEvaluation(Event @event)
         {
             StageService stageService = new StageService();
             stageService = StageInitialize(stageService);
-            _event.Selfevaluation = new List<Stage>();
+            @event.SelfEvaluation = new List<Stage>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
             
@@ -301,6 +316,7 @@ namespace AngerDiary
             {
                 Console.WriteLine("With which stages have you done well? Choose from below");
                 Console.WriteLine("When you finishd press 0");
+                Console.WriteLine();
                 var stages = stageService.AddNotUsedStage();
                 foreach (var stage in stages)
                 {
@@ -338,27 +354,27 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        _event.Selfevaluation.Add(new Stage { StageId = 1,StageName = "Recognizing triggers", HasBeenUsed = true });
+                        @event.SelfEvaluation.Add(new Stage { StageId = 1,StageName = "Recognizing triggers", HasBeenUsed = true });
                         stages.Find(p => p.StageId == 1).HasBeenUsed = true;
                         break;
                     case 2:
-                        _event.Selfevaluation.Add(new Stage { StageId = 2, StageName = "Recognizing signals of anger", HasBeenUsed = true });
+                        @event.SelfEvaluation.Add(new Stage { StageId = 2, StageName = "Recognizing signals of anger", HasBeenUsed = true });
                         stages.Find(p => p.StageId == 2).HasBeenUsed = true;
                         break;
                     case 3:
-                        _event.Selfevaluation.Add(new Stage { StageId = 3, StageName = "Using anger reducers", HasBeenUsed = true });
+                        @event.SelfEvaluation.Add(new Stage { StageId = 3, StageName = "Using anger reducers", HasBeenUsed = true });
                         stages.Find(p => p.StageId == 3).HasBeenUsed = true;
                         break;
                     case 4:
-                        _event.Selfevaluation.Add(new Stage { StageId = 4, StageName = "Self-instruction to keep yourself calm", HasBeenUsed = true });
+                        @event.SelfEvaluation.Add(new Stage { StageId = 4, StageName = "Self-instruction to keep yourself calm", HasBeenUsed = true });
                         stages.Find(p => p.StageId == 4).HasBeenUsed = true;
                         break;
                     case 5:
-                        _event.Selfevaluation.Add(new Stage { StageId = 5, StageName = "Self-rewarding for good effort", HasBeenUsed = true });
+                        @event.SelfEvaluation.Add(new Stage { StageId = 5, StageName = "Self-rewarding for good effort", HasBeenUsed = true });
                         stages.Find(p => p.StageId == 5).HasBeenUsed = true;
                         break;
                     case 6:
-                        _event.Selfevaluation.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });
+                        @event.SelfEvaluation.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });
                         stages.Find(p => p.StageId == 6).HasBeenUsed = true;
                         break;
                     case 0:
@@ -393,10 +409,11 @@ namespace AngerDiary
             return stageService;
         }
         
-        public void AddNewEventSelfCoaching()
+        public void AddNewEventSelfCoaching(Event @event)
         {
             Console.WriteLine("What would you improve in your behavior");
-            _event.Selfcoaching = Console.ReadLine();
+            Console.WriteLine();
+            @event.SelfCoaching = Console.ReadLine();
                 
         }
     }
