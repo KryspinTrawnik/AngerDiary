@@ -1,31 +1,29 @@
-﻿using System;
+﻿using AngerDiary.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AngerDiary
+namespace AngerDiary.Domain.Entity
 {
-    public class AngerSignal
+    public class AngerSignal : BaseEntity
     {
-
-       public int Signalid { get; set; }
-
-       public string Signalname { get; set; }
+       public string Name { get; set; }
 
         public bool HasBeenUsed { get; set; }
 
         public AngerSignal(int id)
         {
-            Signalid = id;
+            Id = id;
         }
         public AngerSignal(int id, string name)
         {
-            Signalid = id;
-            Signalname = name;
+            Id = id;
+            Name = name;
         }
         public AngerSignal(int id, string name, bool hasbeenused)
         {
-            Signalid = id;
-            Signalname = name;
+            Id = id;
+            Name = name;
             HasBeenUsed = hasbeenused;
         }
         public AngerSignal()

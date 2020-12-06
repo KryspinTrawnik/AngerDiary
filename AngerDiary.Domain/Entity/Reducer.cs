@@ -1,30 +1,29 @@
-﻿using System;
+﻿using AngerDiary.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AngerDiary
+namespace AngerDiary.Domain.Entity
 {
-    public class Reducer
+    public class Reducer : BaseEntity
     {
-        public int reducerId { get; set; }
-
-        public string reducerName { get; set; }
+        public string Name { get; set; }
 
         public bool hasBeenUsed { get; set; }
 
         public Reducer(int id)
         {
-            reducerId = id;
+            Id = id;
         }
         public Reducer(int id, string name)
         {
-           reducerId = id;
-           reducerName = name;
+           Id = id;
+           Name = name;
         }
         public Reducer(int id, string name, bool hasbeenused)
         {
-            reducerId= id;
-            reducerName = name;
+            Id= id;
+            Name = name;
             hasBeenUsed = hasbeenused;
         }
         public Reducer()

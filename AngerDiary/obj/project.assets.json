@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "AngerDiary.App/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "AngerDiary.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AngerDiary.App.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AngerDiary.App.dll": {}
+        }
+      },
+      "AngerDiary.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/AngerDiary.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AngerDiary.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "AngerDiary.App/1.0.0": {
+      "type": "project",
+      "path": "../AngerDiary.App/AngerDiary.App.csproj",
+      "msbuildProject": "../AngerDiary.App/AngerDiary.App.csproj"
+    },
+    "AngerDiary.Domain/1.0.0": {
+      "type": "project",
+      "path": "../AngerDiary.Domain/AngerDiary.Domain.csproj",
+      "msbuildProject": "../AngerDiary.Domain/AngerDiary.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "AngerDiary.App >= 1.0.0",
+      "AngerDiary.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Dell\\.nuget\\packages\\": {}
@@ -33,7 +71,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary.App\\AngerDiary.App.csproj": {
+              "projectPath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary.App\\AngerDiary.App.csproj"
+            },
+            "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary.Domain\\AngerDiary.Domain.csproj": {
+              "projectPath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary.Domain\\AngerDiary.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

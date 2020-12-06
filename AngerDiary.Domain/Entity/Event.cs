@@ -1,12 +1,12 @@
-﻿using System;
+﻿using AngerDiary.Domain.Common;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace AngerDiary
+
+namespace AngerDiary.Domain.Entity
 {
-    public class Event
+    public class Event : BaseEntity
     {
-        public int Id { get; set; }
 
         public DateTime TimeOfEvent { get; set; }
 
@@ -35,7 +35,7 @@ namespace AngerDiary
             AngerSignals = new List<AngerSignal>();
             Reducers = new List<Reducer>();
             SelfEvaluation = new List<Stage>();
-
+            
         }
         public override string ToString()
         {

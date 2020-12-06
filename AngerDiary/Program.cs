@@ -1,4 +1,9 @@
-﻿using System;
+﻿using AngerDiary.App.Abstract;
+using AngerDiary.App.Concrete;
+using AngerDiary.App.Managers;
+using AngerDiary.Domain.Entity;
+using AngerDiary.Helpers;
+using System;
 using System.Globalization;
 namespace AngerDiary
 {
@@ -6,18 +11,16 @@ namespace AngerDiary
     {
         static void Main(string[] args)
         {
-           
-            
+
+
             /// d sposoby radzenia sobie ze zloscia
-           
-           
-            
-            Helpers helpers = new Helpers();
+
             MenuActionService actionService = new MenuActionService();
-            actionService = Initialize(actionService);
-            EventManager eventManeger = new EventManager();
             EventService eventService = new EventService();
+            var helpers = new Helper();
+            EventManager eventManeger = new EventManager();
             EventViewManager eventViewManager = new EventViewManager();
+            EventProgressManager eventProgressManager = new EventProgressManager();
             bool exit = false;
             do
             {
@@ -35,8 +38,8 @@ namespace AngerDiary
                 switch (operation.KeyChar)
                 {
                     case '1':
-                        var newEvent = eventManeger.Menage();
-                        eventService.Add(newEvent);
+                        var newEvent = eventManeger.Menage(eventService);
+                        eventService.AddItem(newEvent);
                         break;
                     case '2':
                         eventViewManager.EventViewMenu(actionService, eventService);
@@ -44,7 +47,7 @@ namespace AngerDiary
                     case '3':
                         if (eventService.Events.Count > 1)
                         {
-                            eventService.ViewYourGeneralProgressMenage();
+                            eventProgressManager.Menage(eventService);
                         }
                         else
                         {
@@ -67,19 +70,6 @@ namespace AngerDiary
                 }
             } while (exit == false);
          }   
-        private static MenuActionService Initialize(MenuActionService actionService)
-        {
-            actionService.AddNewAction(1, "Add new event", "Main");
-            actionService.AddNewAction(2, "See events from the past", "Main");
-            actionService.AddNewAction(3, "See your progess", "Main");
-            actionService.AddNewAction(4, "Coping Methods", "Main");
-
-            actionService.AddNewAction(1, "View the last 7 events", "EventView");
-            actionService.AddNewAction(2, "View events from the last month", "EventView");
-            actionService.AddNewAction(3, "View events from chosen month", "EventView");
-            actionService.AddNewAction(4, "View events from chosen period", "EventView");
-            return actionService;
-
-        }
+        
     }
 }

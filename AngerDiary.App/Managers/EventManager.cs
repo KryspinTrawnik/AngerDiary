@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AngerDiary.App.Concrete;
+using AngerDiary.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AngerDiary
+namespace AngerDiary.App.Managers
+
 {
     public class EventManager
     {
@@ -12,10 +15,10 @@ namespace AngerDiary
             _event = new Event();
         }
 
-        public Event Menage()
+        public Event Menage(EventService eventService)
         {
-            Event @event = new Event();
-            
+            Event newEvent = new Event();
+               var @event = eventService.AddId(newEvent);
                 AddNewEventDate(@event);
                 AddNewEventDescribtion(@event);
                 AddNewEventSignals(@event);
@@ -81,7 +84,6 @@ namespace AngerDiary
         public void AddNewEventSignals(Event @event)
         {
             AngerSignalService angersignalService = new AngerSignalService();
-            angersignalService = Initialize(angersignalService);
             @event.AngerSignals = new List<AngerSignal>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
@@ -94,7 +96,7 @@ namespace AngerDiary
                 var angerSignals = angersignalService.AddNotUsedSignal();
                 foreach (var signal in angerSignals)
                 {
-                    Console.WriteLine($"{signal.Signalid}. {signal.Signalname}.");
+                    Console.WriteLine($"{signal.Id}. {signal.Name}.");
                 }
                 int operation = 0;
                 int testoperation = 0;
@@ -130,40 +132,40 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 1, Signalname = "Raised voice", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 1).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 1, Name = "Raised voice", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 1).HasBeenUsed = true;
                         break;
                     case 2:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 2, Signalname = "Headaches", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 2).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal {Id = 2, Name = "Headaches", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 2).HasBeenUsed = true;
                         break;
                     case 3:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 3, Signalname = "Stomachaches", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 3).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 3, Name = "Stomachaches", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 3).HasBeenUsed = true;
                         break;
                     case 4:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 4, Signalname = "Increased heart rate", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 4).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 4, Name = "Increased heart rate", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 4).HasBeenUsed = true;
                         break;
                     case 5:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 5, Signalname = "Raised blood pressure", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 5).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 5, Name = "Raised blood pressure", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 5).HasBeenUsed = true;
                         break;
                     case 6:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 6, Signalname = "Clenching your jaws or grinding your teeth", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 6).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 6, Name = "Clenching your jaws or grinding your teeth", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 6).HasBeenUsed = true;
                         break;
                     case 7:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 7, Signalname = "Clinched fists", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 7).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 7, Name = "Clinched fists", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 7).HasBeenUsed = true;
                         break;
                     case 8:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 8, Signalname = "Sweating, especially your palms", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 8).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 8, Name = "Sweating, especially your palms", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 8).HasBeenUsed = true;
                         break;
                     case 9:
-                        @event.AngerSignals.Add(new AngerSignal { Signalid = 9, Signalname = "Feeling hot in the neck/face", HasBeenUsed = true });
-                        angerSignals.Find(p => p.Signalid == 9).HasBeenUsed = true;
+                        @event.AngerSignals.Add(new AngerSignal { Id = 9, Name = "Feeling hot in the neck/face", HasBeenUsed = true });
+                        angerSignals.Find(p => p.Id == 9).HasBeenUsed = true;
                         break;
                     case 0:
                         double avaregeusedoperation = usedoperation.Average();
@@ -187,24 +189,10 @@ namespace AngerDiary
 
         }
         
-        private static AngerSignalService Initialize(AngerSignalService angersignalService)
-        {
-            angersignalService.AddNewSignal(1, "Raised voice", false);
-            angersignalService.AddNewSignal(2, "Headaches", false);
-            angersignalService.AddNewSignal(3, "Stomachaches", false);
-            angersignalService.AddNewSignal(4, "Increased heart rate", false);
-            angersignalService.AddNewSignal(5, "Raised blood pressure", false);
-            angersignalService.AddNewSignal(6, "Clenching your jaws or grinding your teeth", false);
-            angersignalService.AddNewSignal(7, "Clinched fists", false);
-            angersignalService.AddNewSignal(8, "Sweating, especially your palms", false);
-            angersignalService.AddNewSignal(9, "Feeling hot in the neck/face", false);
-
-            return angersignalService;
-        }
+        
         public void AddNewEventReducer(Event @event)
         {
             ReducerService reducerService = new ReducerService();
-           reducerService = ReducerInitialize(reducerService);
             @event.Reducers = new List<Reducer>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
@@ -213,10 +201,10 @@ namespace AngerDiary
                 Console.WriteLine("Choose from below which of reducers did you used");
                 Console.WriteLine("When you finishd press 0");
                 Console.WriteLine();
-                var reducers = reducerService.AddNotUsedReducer();
+                var reducers = reducerService.GetNotUsedReducer();
                 foreach (var reducer in reducers)
                 {
-                    Console.WriteLine($"{reducer.reducerId}. {reducer.reducerName}.");
+                    Console.WriteLine($"{reducer.Id}. {reducer.Name}.");
                 }
                 int operation = 0;
                 int testoperation = 0;
@@ -250,20 +238,20 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        @event.Reducers.Add(new Reducer { reducerId = 1, reducerName = "Raised voice", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 1).hasBeenUsed = true;
+                        @event.Reducers.Add(new Reducer { Id = 1, Name = "Raised voice", hasBeenUsed = true });
+                        reducers.Find(p => p.Id == 1).hasBeenUsed = true;
                         break;
                     case 2:
-                        @event.Reducers.Add(new Reducer { reducerId = 2, reducerName = "Deep breathing", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 2).hasBeenUsed = true;
+                        @event.Reducers.Add(new Reducer { Id = 2, Name = "Deep breathing", hasBeenUsed = true });
+                        reducers.Find(p => p.Id == 2).hasBeenUsed = true;
                         break;
                     case 3:
-                        @event.Reducers.Add(new Reducer { reducerId = 3, reducerName = "Thinking ahead (if - consequences)", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 3).hasBeenUsed = true;
+                        @event.Reducers.Add(new Reducer { Id = 3, Name = "Thinking ahead (if - consequences)", hasBeenUsed = true });
+                        reducers.Find(p => p.Id == 3).hasBeenUsed = true;
                         break;
                     case 4:
-                        @event.Reducers.Add(new Reducer { reducerId = 4, reducerName = "Positive visualisation", hasBeenUsed = true });
-                        reducers.Find(p => p.reducerId == 4).hasBeenUsed = true;
+                        @event.Reducers.Add(new Reducer { Id = 4, Name = "Positive visualisation", hasBeenUsed = true });
+                        reducers.Find(p => p.Id == 4).hasBeenUsed = true;
                         break;
                     case 0:
                         double avaregeusedoperation = usedoperation.Average();
@@ -284,14 +272,7 @@ namespace AngerDiary
 
             } while (!(exit == true));
         }
-         private static ReducerService ReducerInitialize(ReducerService reducerService)
-        {
-            reducerService.AddNewReducer(1, "Counting backward", false);
-            reducerService.AddNewReducer(2, "Deep breathing", false);
-            reducerService.AddNewReducer(3, "Thinking ahead (if - consequences)", false);
-            reducerService.AddNewReducer(4, "Positive visualisation", false);
-            return reducerService;
-        }
+        
         public void AddNewEventSelfInstruction(Event @event)
         {
             Console.WriteLine("What was your self-instruction thoughts?");
@@ -307,7 +288,6 @@ namespace AngerDiary
         public void AddNewEventSelfEvaluation(Event @event)
         {
             StageService stageService = new StageService();
-            stageService = StageInitialize(stageService);
             @event.SelfEvaluation = new List<Stage>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
@@ -320,7 +300,7 @@ namespace AngerDiary
                 var stages = stageService.AddNotUsedStage();
                 foreach (var stage in stages)
                 {
-                    Console.WriteLine($"{stage.StageId}. {stage.StageName}.");
+                    Console.WriteLine($"{stage.Id}. {stage.Name}.");
                 }
                 int operation = 0;
                 int testoperation = 0;
@@ -354,28 +334,28 @@ namespace AngerDiary
                 switch (operation)
                 {
                     case 1:
-                        @event.SelfEvaluation.Add(new Stage { StageId = 1,StageName = "Recognizing triggers", HasBeenUsed = true });
-                        stages.Find(p => p.StageId == 1).HasBeenUsed = true;
+                        @event.SelfEvaluation.Add(new Stage { Id = 1,Name = "Recognizing triggers", HasBeenUsed = true });
+                        stages.Find(p => p.Id == 1).HasBeenUsed = true;
                         break;
                     case 2:
-                        @event.SelfEvaluation.Add(new Stage { StageId = 2, StageName = "Recognizing signals of anger", HasBeenUsed = true });
-                        stages.Find(p => p.StageId == 2).HasBeenUsed = true;
+                        @event.SelfEvaluation.Add(new Stage { Id = 2, Name = "Recognizing signals of anger", HasBeenUsed = true });
+                        stages.Find(p => p.Id == 2).HasBeenUsed = true;
                         break;
                     case 3:
-                        @event.SelfEvaluation.Add(new Stage { StageId = 3, StageName = "Using anger reducers", HasBeenUsed = true });
-                        stages.Find(p => p.StageId == 3).HasBeenUsed = true;
+                        @event.SelfEvaluation.Add(new Stage { Id = 3, Name = "Using anger reducers", HasBeenUsed = true });
+                        stages.Find(p => p.Id == 3).HasBeenUsed = true;
                         break;
                     case 4:
-                        @event.SelfEvaluation.Add(new Stage { StageId = 4, StageName = "Self-instruction to keep yourself calm", HasBeenUsed = true });
-                        stages.Find(p => p.StageId == 4).HasBeenUsed = true;
+                        @event.SelfEvaluation.Add(new Stage { Id = 4, Name = "Self-instruction to keep yourself calm", HasBeenUsed = true });
+                        stages.Find(p => p.Id == 4).HasBeenUsed = true;
                         break;
                     case 5:
-                        @event.SelfEvaluation.Add(new Stage { StageId = 5, StageName = "Self-rewarding for good effort", HasBeenUsed = true });
-                        stages.Find(p => p.StageId == 5).HasBeenUsed = true;
+                        @event.SelfEvaluation.Add(new Stage { Id = 5, Name = "Self-rewarding for good effort", HasBeenUsed = true });
+                        stages.Find(p => p.Id == 5).HasBeenUsed = true;
                         break;
                     case 6:
-                        @event.SelfEvaluation.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });
-                        stages.Find(p => p.StageId == 6).HasBeenUsed = true;
+                        @event.SelfEvaluation.Add(new Stage { Id = 6, Name = "Looking at the good or bad consequences", HasBeenUsed = true });
+                        stages.Find(p => p.Id == 6).HasBeenUsed = true;
                         break;
                     case 0:
                         double avaregeusedoperation = usedoperation.Average();
@@ -397,17 +377,7 @@ namespace AngerDiary
             } while (!(exit == true));
         }
 
-        private static StageService StageInitialize(StageService stageService)
-        {
-            stageService.AddNewStage(1, "Recognizing triggers", false);
-            stageService.AddNewStage(2, "Recognizing signals of anger", false);
-            stageService.AddNewStage(3, "Using anger reducers", false);
-            stageService.AddNewStage(4, "Self-instruction to keep yourself calm", false);
-            stageService.AddNewStage(5, "Self-rewarding for good effort", false);
-            stageService.AddNewStage(6, "Looking at the good or bad consequences", false);
-
-            return stageService;
-        }
+      
         
         public void AddNewEventSelfCoaching(Event @event)
         {

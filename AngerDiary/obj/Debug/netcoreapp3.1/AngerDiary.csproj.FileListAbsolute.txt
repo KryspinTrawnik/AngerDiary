@@ -24,3 +24,8 @@ C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDi
 C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.dll
 C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.pdb
 C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\obj\Debug\netcoreapp3.1\AngerDiary.genruntimeconfig.cache
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.App.dll
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.Domain.dll
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.App.pdb
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\bin\Debug\netcoreapp3.1\AngerDiary.Domain.pdb
+C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\AngerDiary\obj\Debug\netcoreapp3.1\AngerDiary.csproj.CopyComplete

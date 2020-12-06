@@ -1,26 +1,26 @@
-﻿namespace AngerDiary
-{
-    public class Stage
-    {
-        public int StageId { get; set; }
+﻿using AngerDiary.Domain.Common;
 
-        public string StageName { get; set; }
+namespace AngerDiary.Domain.Entity
+{
+    public class Stage : BaseEntity
+    {
+        public string Name { get; set; }
 
         public bool HasBeenUsed { get; set; }
 
         public Stage(int id)
         {
-            StageId = id;
+            Id = id;
         }
         public Stage(int id, string name)
         {
-            StageId = id;
-            StageName = name;
+            Id = id;
+            Name = name;
         }
         public Stage(int id, string name, bool hasbeenused)
         {
-            StageId = id;
-            StageName = name;
+            Id = id;
+            Name = name;
             HasBeenUsed = hasbeenused;
         }
         public Stage()

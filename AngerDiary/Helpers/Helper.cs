@@ -1,46 +1,17 @@
-﻿using System;
+﻿using AngerDiary.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AngerDiary
+namespace AngerDiary.Helpers
 {
-    class Helpers
+    public class Helper
     {
-       public void EventToView(Event eventToView)
-       {
-            
-            Console.WriteLine("Time of the event is:");
-            Console.WriteLine($"{eventToView.TimeOfEvent}");
-            Console.WriteLine("Anger level from the event is:");
-            Console.WriteLine($"{eventToView.AngerLevel}");
-            Console.WriteLine("Description of the event is:");
-            Console.WriteLine($"{eventToView.Description}");
-            Console.WriteLine("Internal triggers from the event are:");
-            Console.WriteLine($"{eventToView.InternalTriggers}");
-            Console.WriteLine("External triggers from the event are:");
-            Console.WriteLine($"{eventToView.ExternalTriggers}");
-            Console.WriteLine("Anger signals of the event are:");
-            foreach( AngerSignal angerSignal in eventToView.AngerSignals )
-            {
-                Console.WriteLine(angerSignal.Signalname);
-            }
-            Console.WriteLine("Reducers used in the event are:");
-            foreach (Reducer reducer in eventToView.Reducers)
-            {
-                Console.WriteLine(reducer.reducerName);
-            }
-            Console.WriteLine("Self-instructions from the event is:");
-            Console.WriteLine($"{eventToView.SelfInstruction}");
-            Console.WriteLine("Consequences from the event are:");
-            Console.WriteLine($"{eventToView.Consequences}");
-            Console.WriteLine("On these stages you did well during the event:");
-            foreach (Stage stage in eventToView.SelfEvaluation)
-            {
-                Console.WriteLine(stage.StageName);
-            }
-            Console.WriteLine("These are your self-coaching thoughts:");
-            Console.WriteLine($"{eventToView.SelfCoaching}");
+        public Helper()
+        {
+
         }
+       
         public List<Event> TestEvents()//Creating events for test
         {
             //allStages.Add(new Stage { StageId = 1, StageName = "Recognizing triggers", HasBeenUsed = true });// 10

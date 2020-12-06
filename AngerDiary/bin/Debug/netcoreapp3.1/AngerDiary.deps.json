@@ -7,14 +7,41 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "AngerDiary/1.0.0": {
+        "dependencies": {
+          "AngerDiary.App": "1.0.0",
+          "AngerDiary.Domain": "1.0.0"
+        },
         "runtime": {
           "AngerDiary.dll": {}
+        }
+      },
+      "AngerDiary.App/1.0.0": {
+        "dependencies": {
+          "AngerDiary.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AngerDiary.App.dll": {}
+        }
+      },
+      "AngerDiary.Domain/1.0.0": {
+        "runtime": {
+          "AngerDiary.Domain.dll": {}
         }
       }
     }
   },
   "libraries": {
     "AngerDiary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AngerDiary.App/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AngerDiary.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

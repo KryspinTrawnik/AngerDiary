@@ -1,14 +1,14 @@
-﻿using System;
+﻿using AngerDiary.App.Concrete;
+using AngerDiary.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace AngerDiary
+namespace AngerDiary.App.Managers
 {
-    class EventViewManager
+    public class EventViewManager
     {
-
-
         public void EventViewMenu(MenuActionService actionService, EventService eventService)
         {
             Console.WriteLine();
@@ -50,7 +50,6 @@ namespace AngerDiary
             int operation = 0;
             int testoperation = 0;
             bool checksucessful;
-            Helpers helpers = new Helpers();
             int start = 0;
             List<Event> eventsToView = new List<Event>();
 
@@ -88,7 +87,7 @@ namespace AngerDiary
                     else
                     {
                         operation = testoperation;
-                        helpers.EventToView(eventsToView.Find(x => x.Id == operation));
+                        EventToView(eventsToView.Find(x => x.Id == operation));
                     }
                 } while (!checksucessful);
 
@@ -104,7 +103,6 @@ namespace AngerDiary
             DateTime today = DateTime.Now;
             DateTime monthEarlier = today.AddMonths(-1);
             int result;
-            Helpers helpers = new Helpers();
             List<Event> eventsToView = new List<Event>();
             for (int i = 0; eventService.Events.Count > i; i++)
             {
@@ -142,7 +140,7 @@ namespace AngerDiary
                     else
                     {
                         operation = testoperation;
-                        helpers.EventToView(eventsToView.Find(x => x.Id == operation));
+                        EventToView(eventsToView.Find(x => x.Id == operation));
                     }
                 } while (!checksucessful);
             } while (!(exit == true));
@@ -150,7 +148,6 @@ namespace AngerDiary
         }
         public void ViewEventsFromChosenMonth(EventService eventService)
         {
-            Helpers helpers = new Helpers();
             DateTime givenMonth;
             bool checksucessful;
             bool exitFromWholeView = false;
@@ -213,7 +210,7 @@ namespace AngerDiary
                             else
                             {
                                 operation = testoperation;
-                                helpers.EventToView(eventsToView.Find(x => x.Id == operation));
+                                EventToView(eventsToView.Find(x => x.Id == operation));
                             }
                         }
                         else
@@ -230,7 +227,6 @@ namespace AngerDiary
 
         public void ViewEventsFromChosenDate(EventService eventService)
         {
-            Helpers helpers = new Helpers();
             DateTime givenDate;
             bool checksucessful;
             bool exitFromWholeView = false;
@@ -293,7 +289,7 @@ namespace AngerDiary
                             else
                             {
                                 operation = testoperation;
-                                helpers.EventToView(eventsToView.Find(x => x.Id == operation));
+                                EventToView(eventsToView.Find(x => x.Id == operation));
                             }
                         }
                         else
@@ -306,6 +302,41 @@ namespace AngerDiary
                     } while (!(exitFromMonthView == true));
                 }
             } while (!(exitFromWholeView == true));
+        }
+        public void EventToView(Event eventToView)
+        {
+
+            Console.WriteLine("Time of the event is:");
+            Console.WriteLine($"{eventToView.TimeOfEvent}");
+            Console.WriteLine("Anger level from the event is:");
+            Console.WriteLine($"{eventToView.AngerLevel}");
+            Console.WriteLine("Description of the event is:");
+            Console.WriteLine($"{eventToView.Description}");
+            Console.WriteLine("Internal triggers from the event are:");
+            Console.WriteLine($"{eventToView.InternalTriggers}");
+            Console.WriteLine("External triggers from the event are:");
+            Console.WriteLine($"{eventToView.ExternalTriggers}");
+            Console.WriteLine("Anger signals of the event are:");
+            foreach (AngerSignal angerSignal in eventToView.AngerSignals)
+            {
+                Console.WriteLine(angerSignal.Name);
+            }
+            Console.WriteLine("Reducers used in the event are:");
+            foreach (Reducer reducer in eventToView.Reducers)
+            {
+                Console.WriteLine(reducer.Name);
+            }
+            Console.WriteLine("Self-instructions from the event is:");
+            Console.WriteLine($"{eventToView.SelfInstruction}");
+            Console.WriteLine("Consequences from the event are:");
+            Console.WriteLine($"{eventToView.Consequences}");
+            Console.WriteLine("On these stages you did well during the event:");
+            foreach (Stage stage in eventToView.SelfEvaluation)
+            {
+                Console.WriteLine(stage.Name);
+            }
+            Console.WriteLine("These are your self-coaching thoughts:");
+            Console.WriteLine($"{eventToView.SelfCoaching}");
         }
     }
     

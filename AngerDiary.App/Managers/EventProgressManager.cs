@@ -1,52 +1,33 @@
-﻿using System;
+﻿using AngerDiary.App.Concrete;
+using AngerDiary.Domain.Entity;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Globalization;
-using System.Diagnostics.Contracts;
-using System.Collections.Immutable;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
-namespace AngerDiary
+namespace AngerDiary.App.Managers
 {
-    public class EventService
+    public class EventProgressManager
     {
-        public List<Event> Events { get; set; }
-        public EventService()
+        public void Menage(EventService eventService)
         {
-            Events = new List<Event>();
-
+            AngerLevelAvarege(eventService);
+            TheMostCommonReducer(eventService);
+            StrongSide(eventService);
+            int[] stagesCount = StrongSide(eventService);
+            StageToImprove(stagesCount, eventService);
         }
-
-
-        public void Add(Event newEvent)
-        {
-
-
-            newEvent.Id = Events.Count + 1;
-
-
-            Events.Add(newEvent);
-
-        }
-        public void ViewYourGeneralProgressMenage()
-        {
-            AngerLevelAvarege();
-            TheMostCommonReducer();
-            StrongSide();
-            int[] stagesCount = StrongSide(); 
-            StageToImprove(stagesCount);
-        }
-        public void AngerLevelAvarege()
+        public void AngerLevelAvarege(EventService eventService)
         {
             Console.WriteLine();
-            Console.WriteLine($"From {Events[0].TimeOfEvent.Day}/{Events[0].TimeOfEvent.Month}/{Events[0].TimeOfEvent.Year} you had {Events.Count} events");
+            Console.WriteLine($"From {eventService.Events[0].TimeOfEvent.Day}/{eventService.Events[0].TimeOfEvent.Month}/{eventService.Events[0].TimeOfEvent.Year} you had {eventService.Events.Count} events");
             List<int> generalAngerLevelList = new List<int>();
             List<int> monthEarlierAngerLevelList = new List<int>();
             DateTime today = DateTime.Now;
             DateTime monthEarlier = today.AddMonths(-1);
             int result;
-            foreach (Event @event in Events)
+            foreach (Event @event in eventService.Events)
             {
                 generalAngerLevelList.Add(@event.AngerLevel);
                 result = DateTime.Compare(monthEarlier, @event.TimeOfEvent);
@@ -58,7 +39,7 @@ namespace AngerDiary
             double generalAverage = generalAngerLevelList.Average();
             double monthEarlierAverage = monthEarlierAngerLevelList.Average();
             double differenceBetweenAverges = generalAverage - monthEarlierAverage;
-            bool isBigger = Double.IsNegative(differenceBetweenAverges);
+            bool isBigger = Double.IsNegativeInfinity(differenceBetweenAverges);
             double theDifferenceInPrecentage;
             if (isBigger == false)
             {
@@ -73,42 +54,42 @@ namespace AngerDiary
                 Console.WriteLine($"It has decreased from the last month by {differenceBetweenAverges} ( {theDifferenceInPrecentage.ToString("P1", CultureInfo.InvariantCulture)} )");
             }
         }
-        public void TheMostCommonReducer()
+        public void TheMostCommonReducer(EventService eventService)
         {
             int[] reducerIdCount = new int[] { 0, 0, 0, 0, 0 };
-            foreach (Event @event in Events)
+            foreach (Event @event in eventService.Events)
             {
                 foreach (Reducer reducer in @event.Reducers)
                 {
-                    if (reducer.reducerId == 1)
+                    if (reducer.Id == 1)
                     {
                         reducerIdCount[1]++;
                     }
-                    else if (reducer.reducerId == 2)
+                    else if (reducer.Id == 2)
                     {
                         reducerIdCount[2]++;
                     }
-                    else if (reducer.reducerId == 3)
+                    else if (reducer.Id == 3)
                     {
                         reducerIdCount[3]++; ;
                     }
-                    else if (reducer.reducerId == 4)
+                    else if (reducer.Id == 4)
                     {
                         reducerIdCount[4]++;
                     }
 
-                    if (@event.Id == Events.Count)
+                    if (@event.Id == eventService.Events.Count)
                     {
                         int maxValue = reducerIdCount.Max();
                         int mostUsedReducerId = Array.LastIndexOf(reducerIdCount, maxValue);
-                        foreach (Event @event1 in Events)
+                        foreach (Event @event1 in eventService.Events)
                         {
                             foreach (Reducer reducer1 in event1.Reducers)
                             {
-                                if (reducer1.reducerId == mostUsedReducerId && @event1.Id == Events.Count)
+                                if (reducer1.Id == mostUsedReducerId && @event1.Id == eventService.Events.Count)
                                 {
                                     Console.WriteLine("The most used Reducer by you is:");
-                                    Console.WriteLine($"{reducer1.reducerId}. {reducer1.reducerName}");
+                                    Console.WriteLine($"{reducer1.Id}. {reducer1.Name}");
                                     Console.WriteLine();
                                 }
                             }
@@ -117,7 +98,7 @@ namespace AngerDiary
                 }
             }
         }
-        public int[] StrongSide()
+        public int[] StrongSide(EventService eventService)
         {
             //(1, "Recognizing triggers", false); 6pkt
             //(2, "Recognizing signals of anger", false); 8pkt
@@ -133,65 +114,65 @@ namespace AngerDiary
             int secondMaxValue = 0;
             List<Stage> twoMostCommonStages = new List<Stage>();
             List<Stage> stagesToImprove = new List<Stage>();
-            foreach (Event @event in Events)
+            foreach (Event @event in eventService.Events)
             {
                 foreach (Stage stage in @event.SelfEvaluation)
                 {
-                    if (stage.StageId == 1)
+                    if (stage.Id == 1)
                     {
                         strongSideIdCount[0]++;
                     }
-                    else if (stage.StageId == 2)
+                    else if (stage.Id == 2)
                     {
                         strongSideIdCount[1]++;
                     }
-                    else if (stage.StageId == 3)
+                    else if (stage.Id == 3)
                     {
                         strongSideIdCount[2]++; ;
                     }
-                    else if (stage.StageId == 4)
+                    else if (stage.Id == 4)
                     {
                         strongSideIdCount[3]++;
                     }
-                    else if (stage.StageId == 5)
+                    else if (stage.Id == 5)
                     {
                         strongSideIdCount[4]++;
                     }
-                    else if (stage.StageId == 6)
+                    else if (stage.Id == 6)
                     {
                         strongSideIdCount[5]++;
                     }
 
-                    if (@event.Id == Events.Count && (@event.SelfEvaluation.IndexOf(stage) +1) == @event.SelfEvaluation.Count)
+                    if (@event.Id == eventService.Events.Count && (@event.SelfEvaluation.IndexOf(stage) + 1) == @event.SelfEvaluation.Count)
                     {
-                         maxValue = strongSideIdCount.Max();
-                         strongSideId = Array.LastIndexOf(strongSideIdCount, maxValue);
-                        
-                        for(int i = 0; i < strongSideIdCount.Length; i++)
+                        maxValue = strongSideIdCount.Max();
+                        strongSideId = Array.LastIndexOf(strongSideIdCount, maxValue);
+
+                        for (int i = 0; i < strongSideIdCount.Length; i++)
                         {
-                            if (i != strongSideId )
+                            if (i != strongSideId)
                             {
                                 if (secondMaxValue < strongSideIdCount[i])
                                 {
                                     secondMaxValue = strongSideIdCount[i];
-                                    secondStrongSideId = i+1;
+                                    secondStrongSideId = i + 1;
                                 }
                             }
-                                
-                            if(i == 5)
+
+                            if (i == 5)
                             {
 
-                                foreach (Event @event1 in Events)
+                                foreach (Event @event1 in eventService.Events)
                                 {
 
                                     foreach (Stage stage1 in event1.SelfEvaluation)
                                     {
-                                        if (stage1.StageId == strongSideId)
+                                        if (stage1.Id == strongSideId)
                                         {
                                             twoMostCommonStages.Add(stage1);
 
                                         }
-                                        else if (stage1.StageId == secondStrongSideId)
+                                        else if (stage1.Id == secondStrongSideId)
                                         {
                                             twoMostCommonStages.Add(stage1);
                                         }
@@ -201,18 +182,18 @@ namespace AngerDiary
                                         }
 
                                     }
-                                    if (event1.Id == Events.Count)
+                                    if (event1.Id == eventService.Events.Count)
                                     {
                                         Console.WriteLine("You are good on these stages:");
-                                        Console.WriteLine($"{twoMostCommonStages.Find(x => x.StageId == strongSideId).StageName}");
-                                        Console.WriteLine($"{twoMostCommonStages.Find(x => x.StageId == secondStrongSideId).StageName}");
+                                        Console.WriteLine($"{twoMostCommonStages.Find(x => x.Id == strongSideId).Name}");
+                                        Console.WriteLine($"{twoMostCommonStages.Find(x => x.Id == secondStrongSideId).Name}");
                                     }
                                 }
                             }
-                            
+
 
                         }
-                        
+
                     }
                 }
             }
@@ -220,16 +201,16 @@ namespace AngerDiary
 
 
         }
-        public void StageToImprove(int[] stagesCount)
+        public void StageToImprove(int[] stagesCount, EventService eventService)
         {
             StageService stageService = new StageService();
             List<Stage> allStages = new List<Stage>();
-            allStages.Add(new Stage { StageId = 1, StageName = "Recognizing triggers", HasBeenUsed = true });// 10
-            allStages.Add(new Stage { StageId = 2, StageName = "Recognizing signals of anger", HasBeenUsed = true });//11
-            allStages.Add(new Stage { StageId = 3, StageName = "Using anger reducers", HasBeenUsed = true });//12
-            allStages.Add(new Stage { StageId = 4, StageName = "Self-instruction to keep yourself calm", HasBeenUsed = true });//9
-            allStages.Add(new Stage { StageId = 5, StageName = "Self-rewarding for good effort", HasBeenUsed = true });//7
-            allStages.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });//8
+            allStages.Add(new Stage { Id = 1, Name = "Recognizing triggers", HasBeenUsed = true });// 10
+            allStages.Add(new Stage { Id = 2, Name = "Recognizing signals of anger", HasBeenUsed = true });//11
+            allStages.Add(new Stage { Id = 3, Name = "Using anger reducers", HasBeenUsed = true });//12
+            allStages.Add(new Stage { Id = 4, Name = "Self-instruction to keep yourself calm", HasBeenUsed = true });//9
+            allStages.Add(new Stage { Id = 5, Name = "Self-rewarding for good effort", HasBeenUsed = true });//7
+            allStages.Add(new Stage { Id = 6, Name = "Looking at the good or bad consequences", HasBeenUsed = true });//8
             List<Stage> weakStages = new List<Stage>();
             int[] countOfStages = stagesCount;
             int minValue = countOfStages.Min();
@@ -242,22 +223,20 @@ namespace AngerDiary
                         weakStages.Add(allStages[i]);
                     }
                 }
-                
+
                 Console.WriteLine("Try better on this one :");
-                Console.WriteLine(stageService.Valuation(weakStages).StageName);
+                Console.WriteLine(stageService.Valuation(weakStages).Name);
             }
             else
             {
                 Console.WriteLine("Try better on this one :");
-                Console.WriteLine(allStages[Array.IndexOf(countOfStages, minValue)].StageName);
+                Console.WriteLine(allStages[Array.IndexOf(countOfStages, minValue)].Name);
             }
 
         }
 
 
-        public void AddTestEvents(List<Event> testevents)
-        {
-            Events.AddRange(testevents);
-        }
-    }
+        
+}
+
 }
