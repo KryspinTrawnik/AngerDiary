@@ -1,7 +1,6 @@
 ﻿using AngerDiary.Domain.Entity;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AngerDiary.Helpers
 {
@@ -11,7 +10,7 @@ namespace AngerDiary.Helpers
         {
 
         }
-       
+
         public List<Event> TestEvents()//Creating events for test
         {
             //allStages.Add(new Stage { StageId = 1, StageName = "Recognizing triggers", HasBeenUsed = true });// 10
@@ -97,7 +96,7 @@ namespace AngerDiary.Helpers
             AngerSignal angerd = new AngerSignal(2, "Headaches", true);
             Reducer reducerd = new Reducer(2, "Deep breathing", true);
             Stage staged = new Stage(2, "Recognizing signals of anger", true);
-            Stage stageda = new Stage(3, "Using anger reducers" , true);
+            Stage stageda = new Stage(3, "Using anger reducers", true);
             d.Id = 4;
             d.TimeOfEvent = new DateTime(2020, 10, 3, 11, 0, 0);
             d.Description = "blabla";
@@ -115,12 +114,12 @@ namespace AngerDiary.Helpers
             d.SelfEvaluation.Add(stageda);
             d.SelfCoaching = "blablab";
             testEvents.Add(d);
-            
-            
+
+
             return testEvents;
 
         }
-        
+
     }
-    
+
 }

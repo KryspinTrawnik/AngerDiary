@@ -1,9 +1,7 @@
 ﻿using AngerDiary.App.Common;
 using AngerDiary.Domain.Entity;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 
 namespace AngerDiary.App.Concrete
@@ -31,7 +29,7 @@ namespace AngerDiary.App.Concrete
         public Stage Valuation(List<Stage> stages)
         {
             List<Stage> weakStages = stages;
-            foreach(Stage stage in weakStages)
+            foreach (Stage stage in weakStages)
             {
                 if (stage.Id == 1) ///Valuation process
                 {
@@ -55,7 +53,7 @@ namespace AngerDiary.App.Concrete
                 }
                 if (stage.Id == 6)
                 {
-                   stage.Id = 8;
+                    stage.Id = 8;
                 }
 
             }
@@ -71,7 +69,7 @@ namespace AngerDiary.App.Concrete
             AddItem(new Stage(5, "Self-rewarding for good effort", false));
             AddItem(new Stage(6, "Looking at the good or bad consequences", false));
 
-            
+
         }
     }
 }

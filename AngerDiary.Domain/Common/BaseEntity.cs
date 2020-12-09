@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AngerDiary.Domain.Common
+﻿namespace AngerDiary.Domain.Common
 {
     public class BaseEntity : AuditableModel
     {

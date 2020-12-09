@@ -1,17 +1,15 @@
 ﻿using AngerDiary.App.Common;
 using AngerDiary.Domain.Entity;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AngerDiary.App.Concrete
 {
-    class ReducerService :BaseService<Reducer>
+    class ReducerService : BaseService<Reducer>
     {
         public ReducerService()
         {
             Initialize();
-        }   
+        }
         public List<Reducer> GetNotUsedReducer()
         {
             List<Reducer> result = new List<Reducer>();
@@ -31,7 +29,7 @@ namespace AngerDiary.App.Concrete
             AddItem(new Reducer(2, "Deep breathing", false));
             AddItem(new Reducer(3, "Thinking ahead (if - consequences)", false));
             AddItem(new Reducer(4, "Positive visualisation", false));
-            
+
         }
     }
 }

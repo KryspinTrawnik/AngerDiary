@@ -2,8 +2,6 @@
 using AngerDiary.Domain.Entity;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace AngerDiary.App.Managers
 {
@@ -53,13 +51,13 @@ namespace AngerDiary.App.Managers
             int start = 0;
             List<Event> eventsToView = new List<Event>();
 
-            if (eventService.Events.Count > 7)
+            if (eventService.Items.Count > 7)
             {
-                start = eventService.Events.Count - 7;
+                start = eventService.Items.Count - 7;
             }
-            for (int i = start; eventService.Events.Count > i; i++)
+            for (int i = start; eventService.Items.Count > i; i++)
             {
-                eventsToView.Add(eventService.Events[i]);
+                eventsToView.Add(eventService.Items[i]);
                 eventsToView[i].Id = eventsToView.Count;
             }
             do
@@ -104,12 +102,12 @@ namespace AngerDiary.App.Managers
             DateTime monthEarlier = today.AddMonths(-1);
             int result;
             List<Event> eventsToView = new List<Event>();
-            for (int i = 0; eventService.Events.Count > i; i++)
+            for (int i = 0; eventService.Items.Count > i; i++)
             {
-                result = DateTime.Compare(monthEarlier, eventService.Events[i].TimeOfEvent);
+                result = DateTime.Compare(monthEarlier, eventService.Items[i].TimeOfEvent);
                 if (result <= 0)
                 {
-                    eventsToView.Add(eventService.Events[i]);
+                    eventsToView.Add(eventService.Items[i]);
                     eventsToView[(eventsToView.Count - 1)].Id = eventsToView.Count;
 
                 }
@@ -178,7 +176,7 @@ namespace AngerDiary.App.Managers
 
                 if (exitFromWholeView == false)
                 {
-                    List<Event> eventsToView = new List<Event>(eventService.Events.FindAll(p => p.TimeOfEvent.Month == givenMonth.Month && p.TimeOfEvent.Year == givenMonth.Year));
+                    List<Event> eventsToView = new List<Event>(eventService.Items.FindAll(p => p.TimeOfEvent.Month == givenMonth.Month && p.TimeOfEvent.Year == givenMonth.Year));
                     do
                     {
                         if (eventsToView.Count > 0)
@@ -257,7 +255,7 @@ namespace AngerDiary.App.Managers
 
                 if (exitFromWholeView == false)
                 {
-                    List<Event> eventsToView = new List<Event>(eventService.Events.FindAll(p =>  p.TimeOfEvent.Date == givenDate.Date));
+                    List<Event> eventsToView = new List<Event>(eventService.Items.FindAll(p => p.TimeOfEvent.Date == givenDate.Date));
                     do
                     {
                         if (eventsToView.Count > 0)
@@ -339,15 +337,15 @@ namespace AngerDiary.App.Managers
             Console.WriteLine($"{eventToView.SelfCoaching}");
         }
     }
-    
+
 }
 
-    
 
-        
-        
-           
-    
+
+
+
+
+
 
 
 

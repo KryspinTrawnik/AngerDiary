@@ -1,8 +1,6 @@
 ﻿using AngerDiary.App.Abstract;
 using AngerDiary.Domain.Common;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AngerDiary.App.Common
 {
@@ -17,7 +15,7 @@ namespace AngerDiary.App.Common
         public void AddItem(T item)
         {
             Items.Add(item);
-            
+
         }
 
         public List<T> GetAllItems()

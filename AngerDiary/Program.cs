@@ -1,10 +1,7 @@
-﻿using AngerDiary.App.Abstract;
-using AngerDiary.App.Concrete;
+﻿using AngerDiary.App.Concrete;
 using AngerDiary.App.Managers;
-using AngerDiary.Domain.Entity;
 using AngerDiary.Helpers;
 using System;
-using System.Globalization;
 namespace AngerDiary
 {
     class Program
@@ -45,7 +42,7 @@ namespace AngerDiary
                         eventViewManager.EventViewMenu(actionService, eventService);
                         break;
                     case '3':
-                        if (eventService.Events.Count > 1)
+                        if (eventService.Items.Count > 1)
                         {
                             eventProgressManager.Menage(eventService);
                         }
@@ -53,7 +50,7 @@ namespace AngerDiary
                         {
                             Console.WriteLine("There is nothing to show please come back when you add at least 2 events");
                         }
-                            break;
+                        break;
                     case '4':
                         break;
                     case '5':
@@ -69,7 +66,7 @@ namespace AngerDiary
 
                 }
             } while (exit == false);
-         }   
-        
+        }
+
     }
 }

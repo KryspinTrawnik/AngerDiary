@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 
 namespace AngerDiary.App.Managers
 {
@@ -21,13 +20,15 @@ namespace AngerDiary.App.Managers
         public void AngerLevelAvarege(EventService eventService)
         {
             Console.WriteLine();
-            Console.WriteLine($"From {eventService.Events[0].TimeOfEvent.Day}/{eventService.Events[0].TimeOfEvent.Month}/{eventService.Events[0].TimeOfEvent.Year} you had {eventService.Events.Count} events");
+            Console.WriteLine($"From {eventService.Items[0].TimeOfEvent.Day}/{eventService.Items[0].TimeOfEvent.Month}/{eventService.Items[0].TimeOfEvent.Year} you had {eventService.Items.Count} events");
             List<int> generalAngerLevelList = new List<int>();
             List<int> monthEarlierAngerLevelList = new List<int>();
             DateTime today = DateTime.Now;
             DateTime monthEarlier = today.AddMonths(-1);
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
+            List<DateTime> alldates = new List<DateTime>();
             int result;
-            foreach (Event @event in eventService.Events)
+            foreach (Event @event in eventService.Items)
             {
                 generalAngerLevelList.Add(@event.AngerLevel);
                 result = DateTime.Compare(monthEarlier, @event.TimeOfEvent);
@@ -35,29 +36,68 @@ namespace AngerDiary.App.Managers
                 {
                     monthEarlierAngerLevelList.Add(@event.AngerLevel);
                 }
+                alldates.Add(@event.TimeOfEvent);
             }
             double generalAverage = generalAngerLevelList.Average();
-            double monthEarlierAverage = monthEarlierAngerLevelList.Average();
-            double differenceBetweenAverges = generalAverage - monthEarlierAverage;
-            bool isBigger = Double.IsNegativeInfinity(differenceBetweenAverges);
-            double theDifferenceInPrecentage;
-            if (isBigger == false)
+            if (monthEarlierAngerLevelList.Count > 0)
             {
-                theDifferenceInPrecentage = ((generalAverage - monthEarlierAverage) - 1) * 100;
-                Console.WriteLine($"General average of anger level is {generalAverage} ");
-                Console.WriteLine($"It has increased from the last month by {differenceBetweenAverges} ( {theDifferenceInPrecentage.ToString("P1", CultureInfo.InvariantCulture)} )");
+                double monthEarlierAverage = monthEarlierAngerLevelList.Average();
+
+                double differenceBetweenAverges = generalAverage - monthEarlierAverage;
+                bool isBigger = Double.IsNegativeInfinity(differenceBetweenAverges);
+                double theDifferenceInPrecentage;
+                if (isBigger == false)
+                {
+                    theDifferenceInPrecentage = ((generalAverage - monthEarlierAverage) - 1);
+                    Console.WriteLine($"General average of anger level is {generalAverage} ");
+                    Console.WriteLine($"It has increased from the last month by {Math.Round(differenceBetweenAverges, 2)} ( {theDifferenceInPrecentage.ToString("P1", culture)} )");
+                }
+                else
+                {
+                    theDifferenceInPrecentage = (1 - (generalAverage - monthEarlierAverage));
+                    Console.WriteLine($"General average of anger level is {generalAverage}");
+                    Console.WriteLine($"It has decreased from the last month by {Math.Round(differenceBetweenAverges, 2)} ( {theDifferenceInPrecentage.ToString("P1", culture)} )");
+                }
             }
             else
             {
-                theDifferenceInPrecentage = (1 - (generalAverage - monthEarlierAverage)) * 100;
-                Console.WriteLine($"General average of anger level is {generalAverage}");
-                Console.WriteLine($"It has decreased from the last month by {differenceBetweenAverges} ( {theDifferenceInPrecentage.ToString("P1", CultureInfo.InvariantCulture)} )");
+                DateTime theNearstDate = alldates.Max();
+                monthEarlier = theNearstDate.AddMonths(-1);
+                foreach (Event @event in eventService.Items)
+                {
+                    generalAngerLevelList.Add(@event.AngerLevel);
+                    result = DateTime.Compare(monthEarlier, @event.TimeOfEvent);
+                    if (result <= 0)
+                    {
+                        monthEarlierAngerLevelList.Add(@event.AngerLevel);
+                    }
+
+                }
+                double monthEarlierAverage = monthEarlierAngerLevelList.Average();
+
+                double differenceBetweenAverges = generalAverage - monthEarlierAverage;
+
+                double theDifferenceInPrecentage;
+                if (differenceBetweenAverges > 0)
+                {
+                    theDifferenceInPrecentage = ((generalAverage / monthEarlierAverage) - 1);
+                    Console.WriteLine($"Your average is from {theNearstDate}");
+                    Console.WriteLine($"General average of anger level is {generalAverage} ");
+                    Console.WriteLine($"It has increased from the last month by {Math.Round(differenceBetweenAverges, 2)} ({theDifferenceInPrecentage.ToString("P1", culture)} )");
+                }
+                else
+                {
+                    Console.WriteLine($"Your average is from {theNearstDate}");
+                    theDifferenceInPrecentage = (1 - (generalAverage / monthEarlierAverage));
+                    Console.WriteLine($"General average of anger level is {generalAverage}");
+                    Console.WriteLine($"It has decreased from the last month by {Math.Round(differenceBetweenAverges, 2)} ( {theDifferenceInPrecentage.ToString("P1", culture)} )");
+                }
             }
         }
         public void TheMostCommonReducer(EventService eventService)
         {
             int[] reducerIdCount = new int[] { 0, 0, 0, 0, 0 };
-            foreach (Event @event in eventService.Events)
+            foreach (Event @event in eventService.Items)
             {
                 foreach (Reducer reducer in @event.Reducers)
                 {
@@ -78,15 +118,15 @@ namespace AngerDiary.App.Managers
                         reducerIdCount[4]++;
                     }
 
-                    if (@event.Id == eventService.Events.Count)
+                    if (@event.Id == eventService.Items.Count)
                     {
                         int maxValue = reducerIdCount.Max();
                         int mostUsedReducerId = Array.LastIndexOf(reducerIdCount, maxValue);
-                        foreach (Event @event1 in eventService.Events)
+                        foreach (Event @event1 in eventService.Items)
                         {
                             foreach (Reducer reducer1 in event1.Reducers)
                             {
-                                if (reducer1.Id == mostUsedReducerId && @event1.Id == eventService.Events.Count)
+                                if (reducer1.Id == mostUsedReducerId && @event1.Id == eventService.Items.Count)
                                 {
                                     Console.WriteLine("The most used Reducer by you is:");
                                     Console.WriteLine($"{reducer1.Id}. {reducer1.Name}");
@@ -114,7 +154,7 @@ namespace AngerDiary.App.Managers
             int secondMaxValue = 0;
             List<Stage> twoMostCommonStages = new List<Stage>();
             List<Stage> stagesToImprove = new List<Stage>();
-            foreach (Event @event in eventService.Events)
+            foreach (Event @event in eventService.Items)
             {
                 foreach (Stage stage in @event.SelfEvaluation)
                 {
@@ -143,7 +183,7 @@ namespace AngerDiary.App.Managers
                         strongSideIdCount[5]++;
                     }
 
-                    if (@event.Id == eventService.Events.Count && (@event.SelfEvaluation.IndexOf(stage) + 1) == @event.SelfEvaluation.Count)
+                    if (@event.Id == eventService.Items.Count && (@event.SelfEvaluation.IndexOf(stage) + 1) == @event.SelfEvaluation.Count)
                     {
                         maxValue = strongSideIdCount.Max();
                         strongSideId = Array.LastIndexOf(strongSideIdCount, maxValue);
@@ -162,7 +202,7 @@ namespace AngerDiary.App.Managers
                             if (i == 5)
                             {
 
-                                foreach (Event @event1 in eventService.Events)
+                                foreach (Event @event1 in eventService.Items)
                                 {
 
                                     foreach (Stage stage1 in event1.SelfEvaluation)
@@ -182,7 +222,7 @@ namespace AngerDiary.App.Managers
                                         }
 
                                     }
-                                    if (event1.Id == eventService.Events.Count)
+                                    if (event1.Id == eventService.Items.Count)
                                     {
                                         Console.WriteLine("You are good on these stages:");
                                         Console.WriteLine($"{twoMostCommonStages.Find(x => x.Id == strongSideId).Name}");
@@ -236,7 +276,7 @@ namespace AngerDiary.App.Managers
         }
 
 
-        
-}
+
+    }
 
 }

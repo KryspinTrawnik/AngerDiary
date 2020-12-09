@@ -10,11 +10,11 @@ namespace AngerDiary.App.Concrete
         {
             Initialize();
         }
-       
+
         public List<AngerSignal> AddNotUsedSignal()
         {
             List<AngerSignal> result = new List<AngerSignal>();
-            foreach(var signal in Items)
+            foreach (var signal in Items)
             {
                 if (signal.HasBeenUsed == false)
                 {
