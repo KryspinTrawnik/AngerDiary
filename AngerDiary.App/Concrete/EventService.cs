@@ -12,10 +12,10 @@ namespace AngerDiary.App.Concrete
             Events = new List<Event>();
 
         }
-        public Event AddId(Event newEvent)
+        public int AddId()
         {
-            newEvent.Id = Items.Count + 1;
-            return newEvent;
+            int Id = Items.Count + 1;
+            return Id;
         }
         public void AddTestEvents(List<Event> testevents)
         {

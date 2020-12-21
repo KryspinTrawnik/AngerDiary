@@ -33,16 +33,22 @@ namespace AngerDiary.Helpers
             a.AngerLevel = 4;
             a.InternalTriggers = "blabla";
             a.ExternalTriggers = "blabla";
-            a.AngerSignals = new List<AngerSignal>();
-            a.AngerSignals.Add(anger);
-            a.Reducers = new List<Reducer>();
-            a.Reducers.Add(reducer);
+            a.AngerSignals = new List<AngerSignal>
+            {
+                anger
+            };
+            a.Reducers = new List<Reducer>
+            {
+                reducer
+            };
             a.SelfInstruction = "blablba";
             a.Consequences = "blblab";
-            a.SelfEvaluation = new List<Stage>();
-            a.SelfEvaluation.Add(stage);
-            a.SelfEvaluation.Add(stagea);
-            a.SelfEvaluation.Add(stageab);
+            a.SelfEvaluation = new List<Stage>
+            {
+                stage,
+                stagea,
+                stageab
+            };
             a.SelfCoaching = "blablab";
             testEvents.Add(a);
 
@@ -57,14 +63,21 @@ namespace AngerDiary.Helpers
             b.AngerLevel = 5;
             b.InternalTriggers = "blabla";
             b.ExternalTriggers = "blabla";
-            b.AngerSignals = new List<AngerSignal>();
-            b.AngerSignals.Add(angerb);
-            b.Reducers = new List<Reducer>();
-            b.Reducers.Add(reducerb);
+            b.AngerSignals = new List<AngerSignal>
+            {
+                angerb
+            };
+            b.Reducers = new List<Reducer>
+            {
+                reducerb
+            };
             b.SelfInstruction = "blablba";
             b.Consequences = "blblab";
-            b.SelfEvaluation = new List<Stage>();
-            b.SelfEvaluation.Add(stageb);
+            b.SelfEvaluation = new List<Stage>
+            {
+                stageb,
+                stageba
+            };
             b.SelfCoaching = "blablab";
             testEvents.Add(b);
 
@@ -80,15 +93,21 @@ namespace AngerDiary.Helpers
             c.AngerLevel = 8;
             c.InternalTriggers = "blabla";
             c.ExternalTriggers = "blabla";
-            c.AngerSignals = new List<AngerSignal>();
-            c.AngerSignals.Add(angerc);
-            c.Reducers = new List<Reducer>();
-            c.Reducers.Add(reducerc);
+            c.AngerSignals = new List<AngerSignal>
+            {
+                angerc
+            };
+            c.Reducers = new List<Reducer>
+            {
+                reducerc
+            };
             c.SelfInstruction = "blablba";
             c.Consequences = "blblab";
-            c.SelfEvaluation = new List<Stage>();
-            c.SelfEvaluation.Add(stagec);
-            c.SelfEvaluation.Add(stageca);
+            c.SelfEvaluation = new List<Stage>
+            {
+                stagec,
+                stageca
+            };
             c.SelfCoaching = "blablab";
             testEvents.Add(c);
 
@@ -103,15 +122,21 @@ namespace AngerDiary.Helpers
             d.AngerLevel = 8;
             d.InternalTriggers = "blabla";
             d.ExternalTriggers = "blabla";
-            d.AngerSignals = new List<AngerSignal>();
-            d.AngerSignals.Add(angerc);
-            d.Reducers = new List<Reducer>();
-            d.Reducers.Add(reducerc);
+            d.AngerSignals = new List<AngerSignal>
+            {
+                angerd
+            };
+            d.Reducers = new List<Reducer>
+            {
+                reducerd
+            };
             d.SelfInstruction = "blablba";
             d.Consequences = "blblab";
-            d.SelfEvaluation = new List<Stage>();
-            d.SelfEvaluation.Add(staged);
-            d.SelfEvaluation.Add(stageda);
+            d.SelfEvaluation = new List<Stage>
+            {
+                staged,
+                stageda
+            };
             d.SelfCoaching = "blablab";
             testEvents.Add(d);
 

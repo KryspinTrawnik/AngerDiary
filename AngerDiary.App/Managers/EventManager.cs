@@ -9,29 +9,36 @@ namespace AngerDiary.App.Managers
 {
     public class EventManager
     {
-        private Event _event;
+        private readonly Event _event;
+        private readonly AngerSignalService angerSignalService;
+        private readonly ReducerService reducerService;
+        private readonly StageService stageService;
+
         public EventManager()
         {
             _event = new Event();
+            angerSignalService = new AngerSignalService();
+            reducerService = new ReducerService();
+            stageService = new StageService();
         }
 
         public Event Menage(EventService eventService)
         {
-            Event newEvent = new Event();
-            var @event = eventService.AddId(newEvent);
-            AddNewEventDate(@event);
-            AddNewEventDescribtion(@event);
-            AddNewEventSignals(@event);
-            AddNewEventReducer(@event);
-            AddNewEventSelfInstruction(@event);
-            AddNewEventConsequences(@event);
-            AddNewEventSelfEvaluation(@event);
-            AddNewEventSelfCoaching(@event);
+            
+            _event.Id = eventService.AddId();
+            AddNewEventDate();
+            AddNewEventDescribtion();
+            AddNewEventSignals();
+            AddNewEventReducer();
+            AddNewEventSelfInstruction();
+            AddNewEventConsequences();
+            AddNewEventSelfEvaluation();
+            AddNewEventSelfCoaching();
 
-            return @event;
+            return _event;
         }
 
-        public void AddNewEventDate(Event @event)
+        public void AddNewEventDate()
         {
 
             DateTime timeofevent;
@@ -45,22 +52,22 @@ namespace AngerDiary.App.Managers
                 checksucessful = DateTime.TryParse(giventime, out timeofevent);
             }
             while (!checksucessful);
-            @event.TimeOfEvent = timeofevent;
+            _event.TimeOfEvent = timeofevent;
         }
 
-        public void AddNewEventDescribtion(Event @event)
+        public void AddNewEventDescribtion()
         {
             Console.WriteLine("Describe the event:");
             Console.WriteLine();
             string description = Console.ReadLine();
-            @event.Description = description;
+            _event.Description = description;
 
             Console.WriteLine("What were your external triggers");
             Console.WriteLine();
-            @event.ExternalTriggers = Console.ReadLine();
+            _event.ExternalTriggers = Console.ReadLine();
             Console.WriteLine("What were your intternal triggers");
             Console.WriteLine();
-            @event.InternalTriggers = Console.ReadLine();
+            _event.InternalTriggers = Console.ReadLine();
             bool checksucessful;
             int angerlevel;
             do
@@ -69,7 +76,7 @@ namespace AngerDiary.App.Managers
                 Console.WriteLine();
                 string givenangerlevel = Console.ReadLine();
                 checksucessful = Int32.TryParse(givenangerlevel, out angerlevel);
-                @event.AngerLevel = angerlevel;
+                _event.AngerLevel = angerlevel;
                 if (angerlevel > 10 || angerlevel < 0)
                 {
                     Console.WriteLine("Anger level needs to be between 0 and 10");
@@ -78,10 +85,10 @@ namespace AngerDiary.App.Managers
             while (!((angerlevel < 10 && angerlevel > 0) && checksucessful));
         }
 
-        public void AddNewEventSignals(Event @event)
+        public void AddNewEventSignals()
         {
-            AngerSignalService angersignalService = new AngerSignalService();
-            @event.AngerSignals = new List<AngerSignal>();
+
+            _event.AngerSignals = new List<AngerSignal>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
 
@@ -90,7 +97,7 @@ namespace AngerDiary.App.Managers
                 Console.WriteLine("Choose from below which of signals did you experience");
                 Console.WriteLine("When you finishd press 0");
                 Console.WriteLine();
-                var angerSignals = angersignalService.AddNotUsedSignal();
+                var angerSignals = angerSignalService.AddNotUsedSignal();
                 foreach (var signal in angerSignals)
                 {
                     Console.WriteLine($"{signal.Id}. {signal.Name}.");
@@ -128,12 +135,12 @@ namespace AngerDiary.App.Managers
                 if (operation != 0)
                 {
                     angerSignals.Find(p => p.Id == operation).HasBeenUsed = true;
-                    @event.AngerSignals.Add(angerSignals.Find(x => x.Id == operation));
+                    _event.AngerSignals.Add(angerSignals.Find(x => x.Id == operation));
                 }
                 else if (operation == 0)
                 {
-                    double avaregeusedoperation = usedoperation.Average();
-                    if (avaregeusedoperation == 0)
+                   
+                    if (usedoperation.Count == 0)
                     {
                         Console.WriteLine("You need to use at least one signal");
                     }
@@ -152,10 +159,10 @@ namespace AngerDiary.App.Managers
 
         }
 
-        public void AddNewEventReducer(Event @event)
+        public void AddNewEventReducer()
         {
-            ReducerService reducerService = new ReducerService();
-            @event.Reducers = new List<Reducer>();
+            
+            _event.Reducers = new List<Reducer>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
             do
@@ -199,14 +206,13 @@ namespace AngerDiary.App.Managers
                 } while (!(checksucessful && notusedoperation));
                 if (operation != 0)
                 {
-                    reducers.Find(p => p.Id == operation).hasBeenUsed = true;
-                    @event.Reducers.Add(reducers.Find(p => p.Id == operation));
+                    reducers.Find(p => p.Id == operation).HasBeenUsed = true;
+                    _event.Reducers.Add(reducers.Find(p => p.Id == operation));
 
                 }
                 else if (operation == 0)
                 {
-                    double avaregeusedoperation = usedoperation.Average();
-                    if (avaregeusedoperation == 0)
+                    if (usedoperation.Count == 0)
                     {
                         Console.WriteLine("You need to use at least one reducer");
                     }
@@ -224,23 +230,23 @@ namespace AngerDiary.App.Managers
             } while (!(exit == true));
         }
 
-        public void AddNewEventSelfInstruction(Event @event)
+        public void AddNewEventSelfInstruction()
         {
             Console.WriteLine("What was your self-instruction thoughts?");
-            @event.SelfInstruction = Console.ReadLine();
+            _event.SelfInstruction = Console.ReadLine();
         }
 
-        public void AddNewEventConsequences(Event @event)
+        public void AddNewEventConsequences()
         {
             Console.WriteLine("What were positive or negative cosnequences of your behaviour?");
             Console.WriteLine();
-            @event.Consequences = Console.ReadLine();
+            _event.Consequences = Console.ReadLine();
         }
 
-        public void AddNewEventSelfEvaluation(Event @event)
+        public void AddNewEventSelfEvaluation()
         {
-            StageService stageService = new StageService();
-            @event.SelfEvaluation = new List<Stage>();
+           
+            _event.SelfEvaluation = new List<Stage>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
 
@@ -285,12 +291,11 @@ namespace AngerDiary.App.Managers
                 if (operation != 0)
                 {
                     stages.Find(p => p.Id == operation).HasBeenUsed = true;
-                    @event.SelfEvaluation.Add(stages.Find(p => p.Id == operation));
+                    _event.SelfEvaluation.Add(stages.Find(p => p.Id == operation));
                 }
                 else if (operation == 0)
                 {
-                    double avaregeusedoperation = usedoperation.Average();
-                    if (avaregeusedoperation == 0)
+                    if (usedoperation.Count == 0)
                     {
                         Console.WriteLine("You need to use at least one stage");
                     }
@@ -309,11 +314,11 @@ namespace AngerDiary.App.Managers
             } while (!(exit == true));
         }
 
-        public void AddNewEventSelfCoaching(Event @event)
+        public void AddNewEventSelfCoaching()
         {
             Console.WriteLine("What would you improve in your behavior");
             Console.WriteLine();
-            @event.SelfCoaching = Console.ReadLine();
+            _event.SelfCoaching = Console.ReadLine();
         }
     }
 }

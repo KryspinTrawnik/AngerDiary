@@ -6,7 +6,7 @@ namespace AngerDiary.Domain.Entity
     {
         public string Name { get; set; }
 
-        public bool hasBeenUsed { get; set; }
+        public bool HasBeenUsed { get; set; }
 
         public Reducer(int id)
         {
@@ -21,7 +21,7 @@ namespace AngerDiary.Domain.Entity
         {
             Id = id;
             Name = name;
-            hasBeenUsed = hasbeenused;
+            HasBeenUsed = hasbeenused;
         }
         public Reducer()
         {

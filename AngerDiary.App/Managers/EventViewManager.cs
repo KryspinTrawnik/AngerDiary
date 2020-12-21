@@ -67,9 +67,9 @@ namespace AngerDiary.App.Managers
                     Console.WriteLine();
                     Console.WriteLine("Choose which event would you like to see");
                     Console.WriteLine("When you finish press 0");
-                    foreach (Event @event in eventsToView)
+                    foreach (Event _event in eventsToView)
                     {
-                        Console.WriteLine($"{@event.Id}. Date: {@event.TimeOfEvent} Anger level was: {@event.AngerLevel}");
+                        Console.WriteLine($"{_event.Id}. Date: {_event.TimeOfEvent} Anger level was: {_event.AngerLevel}");
                     }
                     Console.WriteLine();
                     string givenoperation = Console.ReadLine();
@@ -181,18 +181,18 @@ namespace AngerDiary.App.Managers
                     {
                         if (eventsToView.Count > 0)
                         {
-                            foreach (Event @event in eventsToView)
+                            foreach (Event _event in eventsToView)
                             {
-                                @event.Id = (eventsToView.LastIndexOf(@event) + 1);
+                                _event.Id = (eventsToView.LastIndexOf(_event) + 1);
                             }
 
                             Console.WriteLine();
                             Console.WriteLine("Choose which event would you like to see");
                             Console.WriteLine("When you finish press 0");
-                            foreach (Event @event in eventsToView)
+                            foreach (Event _event in eventsToView)
                             {
 
-                                Console.WriteLine($"{@event.Id}. Date: {@event.TimeOfEvent} Anger level was: {@event.AngerLevel}");
+                                Console.WriteLine($"{_event.Id}. Date: {_event.TimeOfEvent} Anger level was: {_event.AngerLevel}");
                             }
                             Console.WriteLine();
                             string givenoperation = Console.ReadLine();
@@ -260,9 +260,9 @@ namespace AngerDiary.App.Managers
                     {
                         if (eventsToView.Count > 0)
                         {
-                            foreach (Event @event in eventsToView)
+                            foreach (Event _event in eventsToView)
                             {
-                                @event.Id = (eventsToView.LastIndexOf(@event) + 1);
+                                _event.Id = (eventsToView.LastIndexOf(_event) + 1);
                             }
 
                             Console.WriteLine();

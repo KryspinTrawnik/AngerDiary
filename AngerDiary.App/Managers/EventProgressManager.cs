@@ -9,13 +9,15 @@ namespace AngerDiary.App.Managers
 {
     public class EventProgressManager
     {
+        private readonly StageService stageService;
+
         public void Menage(EventService eventService)
         {
             AngerLevelAvarege(eventService);
             TheMostCommonReducer(eventService);
             StrongSide(eventService);
             int[] stagesCount = StrongSide(eventService);
-            StageToImprove(stagesCount, eventService);
+            StageToImprove(stagesCount);
         }
         public void AngerLevelAvarege(EventService eventService)
         {
@@ -140,13 +142,6 @@ namespace AngerDiary.App.Managers
         }
         public int[] StrongSide(EventService eventService)
         {
-            //(1, "Recognizing triggers", false); 6pkt
-            //(2, "Recognizing signals of anger", false); 8pkt
-            //(3, "Using anger reducers", false); 10pkt
-            //(4, "Self-instruction to keep yourself calm", false); 4pkt
-            //(5, "Self-rewarding for good effort", false);  2 pkt
-            //(6, "Looking at the good or bad consequences", false); 1pkt
-
             int[] strongSideIdCount = new int[] { 0, 0, 0, 0, 0, 0 };
             int secondStrongSideId = 0;
             int maxValue = 0;
@@ -241,16 +236,18 @@ namespace AngerDiary.App.Managers
 
 
         }
-        public void StageToImprove(int[] stagesCount, EventService eventService)
+        public void StageToImprove(int[] stagesCount)
         {
-            StageService stageService = new StageService();
-            List<Stage> allStages = new List<Stage>();
-            allStages.Add(new Stage { Id = 1, Name = "Recognizing triggers", HasBeenUsed = true });// 10
-            allStages.Add(new Stage { Id = 2, Name = "Recognizing signals of anger", HasBeenUsed = true });//11
-            allStages.Add(new Stage { Id = 3, Name = "Using anger reducers", HasBeenUsed = true });//12
-            allStages.Add(new Stage { Id = 4, Name = "Self-instruction to keep yourself calm", HasBeenUsed = true });//9
-            allStages.Add(new Stage { Id = 5, Name = "Self-rewarding for good effort", HasBeenUsed = true });//7
-            allStages.Add(new Stage { Id = 6, Name = "Looking at the good or bad consequences", HasBeenUsed = true });//8
+            
+            List<Stage> allStages = new List<Stage>
+            {
+                new Stage { Id = 1, Name = "Recognizing triggers", HasBeenUsed = true },// 10
+                new Stage { Id = 2, Name = "Recognizing signals of anger", HasBeenUsed = true },//11
+                new Stage { Id = 3, Name = "Using anger reducers", HasBeenUsed = true },//12
+                new Stage { Id = 4, Name = "Self-instruction to keep yourself calm", HasBeenUsed = true },//9
+                new Stage { Id = 5, Name = "Self-rewarding for good effort", HasBeenUsed = true },//7
+                new Stage { Id = 6, Name = "Looking at the good or bad consequences", HasBeenUsed = true }//8
+            };
             List<Stage> weakStages = new List<Stage>();
             int[] countOfStages = stagesCount;
             int minValue = countOfStages.Min();

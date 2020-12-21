@@ -15,7 +15,7 @@ namespace AngerDiary.App.Concrete
             List<Reducer> result = new List<Reducer>();
             foreach (var reducer in Items)
             {
-                if (reducer.hasBeenUsed == false)
+                if (reducer.HasBeenUsed == false)
                 {
                     result.Add(reducer);
                 }
