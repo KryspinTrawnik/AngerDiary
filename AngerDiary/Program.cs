@@ -15,7 +15,6 @@ namespace AngerDiary
             MenuActionService actionService = new MenuActionService();
             EventService eventService = new EventService();
             var helpers = new Helper();
-            EventManager eventManeger = new EventManager();
             EventViewManager eventViewManager = new EventViewManager();
             EventProgressManager eventProgressManager = new EventProgressManager();
             bool exit = false;
@@ -35,6 +34,7 @@ namespace AngerDiary
                 switch (operation.KeyChar)
                 {
                     case '1':
+                        EventManager eventManeger = new EventManager();
                         var newEvent = eventManeger.Menage(eventService);
                         eventService.AddItem(newEvent);
                         break;

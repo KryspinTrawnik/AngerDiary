@@ -31,7 +31,7 @@ namespace AngerDiary.App.Concrete
             List<Stage> weakStages = stages;
             foreach (Stage stage in weakStages)
             {
-                if (stage.Id == 1) ///Valuation process
+                if (stage.Id == 1) 
                 {
                     stage.Id = 10;
                 }

@@ -1,4 +1,5 @@
-﻿using AngerDiary.App.Concrete;
+﻿using AngerDiary.App.Abstract;
+using AngerDiary.App.Concrete;
 using AngerDiary.Domain.Entity;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 namespace AngerDiary.App.Managers
 
 {
-    public class EventManager
+    public class EventManager 
     {
         private readonly Event _event;
         private readonly AngerSignalService angerSignalService;
@@ -20,6 +21,7 @@ namespace AngerDiary.App.Managers
             angerSignalService = new AngerSignalService();
             reducerService = new ReducerService();
             stageService = new StageService();
+
         }
 
         public Event Menage(EventService eventService)
@@ -82,12 +84,12 @@ namespace AngerDiary.App.Managers
                     Console.WriteLine("Anger level needs to be between 0 and 10");
                 }
             }
-            while (!((angerlevel < 10 && angerlevel > 0) && checksucessful));
+            while (!((angerlevel <= 10 && angerlevel >= 0) && checksucessful));
         }
 
         public void AddNewEventSignals()
         {
-
+            Console.Clear();
             _event.AngerSignals = new List<AngerSignal>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
@@ -168,6 +170,7 @@ namespace AngerDiary.App.Managers
             do
             {
                 Console.WriteLine("Choose from below which of reducers did you used");
+                Console.WriteLine("If you had not used any, please choose one which you would have used");
                 Console.WriteLine("When you finishd press 0");
                 Console.WriteLine();
                 var reducers = reducerService.GetNotUsedReducer();
@@ -232,6 +235,7 @@ namespace AngerDiary.App.Managers
 
         public void AddNewEventSelfInstruction()
         {
+            Console.Clear();
             Console.WriteLine("What was your self-instruction thoughts?");
             _event.SelfInstruction = Console.ReadLine();
         }
@@ -319,6 +323,7 @@ namespace AngerDiary.App.Managers
             Console.WriteLine("What would you improve in your behavior");
             Console.WriteLine();
             _event.SelfCoaching = Console.ReadLine();
+            Console.Clear();
         }
     }
 }

@@ -21,12 +21,13 @@ namespace AngerDiary.Helpers
             //allStages.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });//8
 
             List<Event> testEvents = new List<Event>();
-            Event a = new Event();
+            
             AngerSignal anger = new AngerSignal(1, "Raised voice", true);
             Reducer reducer = new Reducer(1, "Counting backward", true);
             Stage stage = new Stage(1, "Recognizing triggers", true);
             Stage stagea = new Stage(4, "Self-instruction to keep yourself calm", true);
             Stage stageab = new Stage(5, "Self-rewarding for good effort", true);
+            var a = new Event();
             a.Id = 1;
             a.TimeOfEvent = new DateTime(2020, 10, 30, 8, 0, 0);
             a.Description = "blabla";
