@@ -9,7 +9,7 @@ namespace AngerDiary.App.Managers
 {
     public class EventProgressManager
     {
-        private readonly StageService stageService;
+        private StageService stageService;
 
         public void Menage(EventService eventService)
         {
@@ -140,99 +140,13 @@ namespace AngerDiary.App.Managers
                 }
             }
         }
-        public int[] StrongSide(EventService eventService)
+        public int[] StrongSide(EventService eventService, StageService stageService)
         {
-            int[] strongSideIdCount = new int[] { 0, 0, 0, 0, 0, 0 };
-            int secondStrongSideId = 0;
-            int maxValue = 0;
-            int strongSideId = 0;
-            int secondMaxValue = 0;
-            List<Stage> twoMostCommonStages = new List<Stage>();
-            List<Stage> stagesToImprove = new List<Stage>();
-            foreach (Event @event in eventService.Items)
-            {
-                foreach (Stage stage in @event.SelfEvaluation)
-                {
-                    if (stage.Id == 1)
-                    {
-                        strongSideIdCount[0]++;
-                    }
-                    else if (stage.Id == 2)
-                    {
-                        strongSideIdCount[1]++;
-                    }
-                    else if (stage.Id == 3)
-                    {
-                        strongSideIdCount[2]++; ;
-                    }
-                    else if (stage.Id == 4)
-                    {
-                        strongSideIdCount[3]++;
-                    }
-                    else if (stage.Id == 5)
-                    {
-                        strongSideIdCount[4]++;
-                    }
-                    else if (stage.Id == 6)
-                    {
-                        strongSideIdCount[5]++;
-                    }
-
-                    if (@event.Id == eventService.Items.Count && (@event.SelfEvaluation.IndexOf(stage) + 1) == @event.SelfEvaluation.Count)
-                    {
-                        maxValue = strongSideIdCount.Max();
-                        strongSideId = Array.LastIndexOf(strongSideIdCount, maxValue);
-
-                        for (int i = 0; i < strongSideIdCount.Length; i++)
-                        {
-                            if (i != strongSideId)
-                            {
-                                if (secondMaxValue < strongSideIdCount[i])
-                                {
-                                    secondMaxValue = strongSideIdCount[i];
-                                    secondStrongSideId = i + 1;
-                                }
-                            }
-
-                            if (i == 5)
-                            {
-
-                                foreach (Event @event1 in eventService.Items)
-                                {
-
-                                    foreach (Stage stage1 in event1.SelfEvaluation)
-                                    {
-                                        if (stage1.Id == strongSideId)
-                                        {
-                                            twoMostCommonStages.Add(stage1);
-
-                                        }
-                                        else if (stage1.Id == secondStrongSideId)
-                                        {
-                                            twoMostCommonStages.Add(stage1);
-                                        }
-                                        else
-                                        {
-                                            stagesToImprove.Add(stage1);
-                                        }
-
-                                    }
-                                    if (event1.Id == eventService.Items.Count)
-                                    {
-                                        Console.WriteLine("You are good on these stages:");
-                                        Console.WriteLine($"{twoMostCommonStages.Find(x => x.Id == strongSideId).Name}");
-                                        Console.WriteLine($"{twoMostCommonStages.Find(x => x.Id == secondStrongSideId).Name}");
-                                    }
-                                }
-                            }
-
-
-                        }
-
-                    }
-                }
-            }
-            return strongSideIdCount;
+            var strongSideService = new StrongSideService();
+            StrongSideItems strongSide = strongSideService.StrongSidesCount(eventService);
+            Console.WriteLine($"The{stageService.FindStageById(strongSide.StrongSideId).Name}");
+            Console.WriteLine($"The{stageService.FindStageById(strongSide.SecondStrongSideId).Name}");
+            return strongSide.StagesToImprove.ToArray();
 
 
         }

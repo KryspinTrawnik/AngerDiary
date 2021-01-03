@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AngerDiary.App\AngerDiary.App.csproj" />
     <ProjectReference Include="..\AngerDiary.Domain\AngerDiary.Domain.csproj" />
+    <ProjectReference Include="..\AngryDiary.Tests\AngryDiary.Tests.csproj" />
   </ItemGroup>
 
 </Project>

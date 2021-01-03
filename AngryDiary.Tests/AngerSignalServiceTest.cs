@@ -1,5 +1,7 @@
 using System;
 using Xunit;
+using AngryDiary;
+using Moq;
 
 namespace AngryDiary.Tests
 {
@@ -9,7 +11,7 @@ namespace AngryDiary.Tests
         public void AddNotUsedSignaltTest()
         {
             //Arrange
-            
+          
             //Act
             //Assert
         }

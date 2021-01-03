@@ -60,6 +60,10 @@ namespace AngerDiary.App.Concrete
             Stage stageToImprve = weakStages.Find(x => x.Id == weakStages.Max(y => y.Id));
             return stageToImprve;
         }
+        public Stage FindStageById(int id)=> new List<Stage>()
+            .PickFromInitialList()
+            .Find(stage => stage.Id == id);
+        
         private void Initialize()
         {
             AddItem(new Stage(1, "Recognizing triggers", false));
