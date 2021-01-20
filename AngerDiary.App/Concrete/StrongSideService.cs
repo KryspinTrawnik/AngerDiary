@@ -9,38 +9,35 @@ namespace AngerDiary.App.Concrete
 {
     public class StrongSideService
     {
-        private StrongSideItems strongSide;
-        private StageService stageService;
+        private StrongSideItems StrongSide;
+        
 
         public StrongSideService()
         {
-            strongSide = new StrongSideItems();
-            stageService = new StageService();
+            StrongSide = new StrongSideItems();
         }
 
-        public StrongSideItems StrongSidesCount(EventService eventService)
+        public StrongSideItems StrongSidesCount(EventService eventService, StageService stageService)
         {
             
             foreach(Event @event in eventService.Items)
             {
-                for (int i = 0; @event.SelfEvaluation.Count > i; i++)
+                for (int i = 1; @event.SelfEvaluation.Count > i; i++)
                 {
-                   strongSide.StrongSideIdCount[@event.SelfEvaluation[i-1].Id].Item2++;
+                   StrongSide.StrongSideIdCount[@event.SelfEvaluation[i].Id - 1].Item2++;
                 }
             }
 
-            strongSide.StrongSideIdCount = strongSide.StrongSideIdCount.ToList().OrderBy(x => x.Item2).ToArray();
+            StrongSide.StrongSideIdCount = StrongSide.StrongSideIdCount.ToList().OrderBy(x => x.Item2).ToArray();
 
-            strongSide.StrongSideId = strongSide.StrongSideIdCount
-                .ToList()
+            StrongSide.StrongSideId = StrongSide.StrongSideIdCount.ToList()
                 .First().Item1;
 
-            strongSide.SecondStrongSideId = strongSide.StrongSideIdCount
-              .ToList()
+            StrongSide.SecondStrongSideId = StrongSide.StrongSideIdCount.ToList()
               .Skip(1)
               .First().Item1;
 
-           var idOfStagesToImprove = strongSide.StrongSideIdCount.ToList()
+           var idOfStagesToImprove = StrongSide.StrongSideIdCount.ToList()
                 .Skip(2)
                 .Select(stage => stage.Item1).ToList();
 
@@ -50,9 +47,9 @@ namespace AngerDiary.App.Concrete
             stageService.Items
                 .PickFromInitialList();
 
-            idOfStagesToImprove.ForEach(id => strongSide.StagesToImprove.Add(stageService.FindStageById(id)));
+            idOfStagesToImprove.ForEach(id => StrongSide.StagesToImprove.Add(stageService.FindStageById(id)));
 
-            return strongSide;
+            return StrongSide;
         }
     }
 }

@@ -23,6 +23,11 @@ namespace AngerDiary.App.Concrete
             }
             return result;
         }
+
+        public Reducer FindReducerById(int id) => new List<Reducer>()
+            .PickFromInitialList()
+            .Find(stage => stage.Id == id);
+
         private void Initialize()
         {
             AddItem(new Reducer(1, "Counting backward", false));

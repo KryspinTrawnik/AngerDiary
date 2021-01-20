@@ -11,22 +11,16 @@ namespace AngerDiary.Helpers
 
         }
 
-        public List<Event> TestEvents()//Creating events for test
+        public List<Event> TestEvents()
         {
-            //allStages.Add(new Stage { StageId = 1, StageName = "Recognizing triggers", HasBeenUsed = true });// 10
-            //allStages.Add(new Stage { StageId = 2, StageName = "Recognizing signals of anger", HasBeenUsed = true });//11
-            //allStages.Add(new Stage { StageId = 3, StageName = "Using anger reducers", HasBeenUsed = true });//12
-            //allStages.Add(new Stage { StageId = 4, StageName = "Self-instruction to keep yourself calm", HasBeenUsed = true });//9
-            //allStages.Add(new Stage { StageId = 5, StageName = "Self-rewarding for good effort", HasBeenUsed = true });//7
-            //allStages.Add(new Stage { StageId = 6, StageName = "Looking at the good or bad consequences", HasBeenUsed = true });//8
-
+        
             List<Event> testEvents = new List<Event>();
             
             AngerSignal anger = new AngerSignal(1, "Raised voice", true);
             Reducer reducer = new Reducer(1, "Counting backward", true);
-            Stage stage = new Stage(1, "Recognizing triggers", true);
-            Stage stagea = new Stage(4, "Self-instruction to keep yourself calm", true);
-            Stage stageab = new Stage(5, "Self-rewarding for good effort", true);
+            Stage stage = new Stage(1, "Recognizing triggers", true, 10);
+            Stage stagea = new Stage(4, "Self-instruction to keep yourself calm", true, 9);
+            Stage stageab = new Stage(5, "Self-rewarding for good effort", true, 7);
             var a = new Event();
             a.Id = 1;
             a.TimeOfEvent = new DateTime(2020, 10, 30, 8, 0, 0);
@@ -56,8 +50,8 @@ namespace AngerDiary.Helpers
             Event b = new Event();
             AngerSignal angerb = new AngerSignal(2, "Headaches", true);
             Reducer reducerb = new Reducer(2, "Deep breathing", true);
-            Stage stageb = new Stage(1, "Recognizing triggers", true);
-            Stage stageba = new Stage(1, "Recognizing triggers", true);
+            Stage stageb = new Stage(1, "Recognizing triggers", true, 10);
+            Stage stageba = new Stage(1, "Recognizing triggers", true, 10);
             b.Id = 2;
             b.TimeOfEvent = new DateTime(2020, 11, 3, 11, 0, 0);
             b.Description = "blabla";
@@ -86,8 +80,8 @@ namespace AngerDiary.Helpers
             Event c = new Event();
             AngerSignal angerc = new AngerSignal(2, "Headaches", true);
             Reducer reducerc = new Reducer(1, "Counting backward", true);
-            Stage stagec = new Stage(2, "Recognizing signals of anger", true);
-            Stage stageca = new Stage(3, "Using anger reducers", true);
+            Stage stagec = new Stage(2, "Recognizing signals of anger", true, 11);
+            Stage stageca = new Stage(3, "Using anger reducers", true, 12);
             c.Id = 3;
             c.TimeOfEvent = new DateTime(2020, 10, 1, 15, 0, 0);
             c.Description = "blabla";
@@ -115,8 +109,8 @@ namespace AngerDiary.Helpers
             Event d = new Event();
             AngerSignal angerd = new AngerSignal(2, "Headaches", true);
             Reducer reducerd = new Reducer(2, "Deep breathing", true);
-            Stage staged = new Stage(2, "Recognizing signals of anger", true);
-            Stage stageda = new Stage(3, "Using anger reducers", true);
+            Stage staged = new Stage(2, "Recognizing signals of anger", true, 11);
+            Stage stageda = new Stage(3, "Using anger reducers", true, 12);
             d.Id = 4;
             d.TimeOfEvent = new DateTime(2020, 10, 3, 11, 0, 0);
             d.Description = "blabla";

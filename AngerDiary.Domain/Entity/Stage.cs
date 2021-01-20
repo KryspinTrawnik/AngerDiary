@@ -8,10 +8,9 @@ namespace AngerDiary.Domain.Entity
 
         public bool HasBeenUsed { get; set; }
 
-        public Stage(int id)
-        {
-            Id = id;
-        }
+        public int Value { get; set; }
+
+        
         public Stage(int id, string name)
         {
             Id = id;
@@ -22,6 +21,13 @@ namespace AngerDiary.Domain.Entity
             Id = id;
             Name = name;
             HasBeenUsed = hasbeenused;
+        }
+        public Stage(int id, string name, bool hasbeenused, int value)
+        {
+            Id = id;
+            Name = name;
+            HasBeenUsed = hasbeenused;
+            Value = value;
         }
         public Stage()
         {

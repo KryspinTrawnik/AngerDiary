@@ -14,9 +14,9 @@ namespace AngerDiary
 
             MenuActionService actionService = new MenuActionService();
             EventService eventService = new EventService();
-            var helpers = new Helper();
-            EventViewManager eventViewManager = new EventViewManager();
-            EventProgressManager eventProgressManager = new EventProgressManager();
+            Helper helpers = new Helper();
+            EventViewManager eventViewManager = new EventViewManager(eventService);
+            EventProgressManager eventProgressManager = new EventProgressManager(eventService);
             bool exit = false;
             do
             {
@@ -39,12 +39,12 @@ namespace AngerDiary
                         eventService.AddItem(newEvent);
                         break;
                     case '2':
-                        eventViewManager.EventViewMenu(actionService, eventService);
+                        eventViewManager.EventViewMenu(actionService);
                         break;
                     case '3':
                         if (eventService.Items.Count > 1)
                         {
-                            eventProgressManager.Menage(eventService);
+                            eventProgressManager.Menage();
                         }
                         else
                         {
