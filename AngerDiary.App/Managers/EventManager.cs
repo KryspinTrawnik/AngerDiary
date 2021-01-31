@@ -99,7 +99,7 @@ namespace AngerDiary.App.Managers
                 Console.WriteLine("Choose from below which of signals did you experience");
                 Console.WriteLine("When you finishd press 0");
                 Console.WriteLine();
-                var angerSignals = angerSignalService.AddNotUsedSignal();
+                var angerSignals = angerSignalService.ReturnNotUsedSignal();
                 foreach (var signal in angerSignals)
                 {
                     Console.WriteLine($"{signal.Id}. {signal.Name}.");

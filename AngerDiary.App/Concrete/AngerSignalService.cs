@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace AngerDiary.App.Concrete
 {
-    class AngerSignalService : BaseService<AngerSignal>
+    public class AngerSignalService : BaseService<AngerSignal>
     {
         public AngerSignalService()
         {
             Initialize();
         }
 
-        public List<AngerSignal> AddNotUsedSignal()
+        public List<AngerSignal> ReturnNotUsedSignal()
         {
             List<AngerSignal> result = new List<AngerSignal>();
             foreach (var signal in Items)

@@ -9,32 +9,47 @@ namespace AngerDiary.App.Concrete
     public class AvaregeAngerLevelService
     {
         public AverageAngerSignalItems AverageAngerSignalItems;
-
+        private EventService EventService;
         public AvaregeAngerLevelService()
         {
             AverageAngerSignalItems = new AverageAngerSignalItems();
         }
         public AverageAngerSignalItems AvarageAngerSignal(EventService eventService)
         {
-            foreach(Event _event in eventService.Items)
+            EventService = eventService;
+            GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate();
+            GetMonthEarlierAngerLevelListAndAverages();
+            GetPerecntageDifferenceAndtext();
+            
+                return AverageAngerSignalItems;
+        }
+        private void GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate()
+        {
+            foreach (Event _event in EventService.Items)
             {
                 AverageAngerSignalItems.GeneralAngerLevelList.Add(_event.AngerLevel);
                 AverageAngerSignalItems.AllDates.Add(_event.TimeOfEvent);
             }
             AverageAngerSignalItems.TheNearestDate = AverageAngerSignalItems.AllDates.Max();
             AverageAngerSignalItems.MonthEarlierDate = AverageAngerSignalItems.TheNearestDate.AddMonths(-1);
-            foreach (Event _event in eventService.Items)
+        }
+        private void GetMonthEarlierAngerLevelListAndAverages()
+        {
+            foreach (Event _event in EventService.Items)
             {
                 AverageAngerSignalItems.CompareReuslt = DateTime.Compare(AverageAngerSignalItems.MonthEarlierDate, _event.TimeOfEvent);
-                if(AverageAngerSignalItems.CompareReuslt <= 0)
+                if (AverageAngerSignalItems.CompareReuslt <= 0)
                 {
                     AverageAngerSignalItems.MonthEarlierAngerLevelList.Add(_event.AngerLevel);
                 }
             }
             AverageAngerSignalItems.MonthEarlierAverage = AverageAngerSignalItems.MonthEarlierAngerLevelList.Average();
             AverageAngerSignalItems.GeneralAverage = AverageAngerSignalItems.GeneralAngerLevelList.Average();
-            AverageAngerSignalItems.DifferenceBetweenAverges = AverageAngerSignalItems.GeneralAverage - 
+            AverageAngerSignalItems.DifferenceBetweenAverges = AverageAngerSignalItems.GeneralAverage -
                 AverageAngerSignalItems.MonthEarlierAverage;
+        }
+        private void GetPerecntageDifferenceAndtext()
+        {
             if (AverageAngerSignalItems.DifferenceBetweenAverges > 0)
             {
                 AverageAngerSignalItems.PrecentageDifferenceBetweenAverges =
@@ -47,8 +62,6 @@ namespace AngerDiary.App.Concrete
                     1 - (AverageAngerSignalItems.GeneralAverage / AverageAngerSignalItems.MonthEarlierAverage);
                 AverageAngerSignalItems.IncreasedOrDeacresedText = "It has decreased from the last month by";
             }
-
-                return AverageAngerSignalItems;
         }
     }
 }
