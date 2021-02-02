@@ -12,7 +12,7 @@ namespace AngerDiary.App.Concrete
         {
             Initialize();
         }
-        public List<Stage> AddNotUsedStage()
+        public List<Stage> GetNotUsedStage()
         {
             List<Stage> result = new List<Stage>();
             foreach (var stage in Items)

@@ -173,7 +173,7 @@ namespace AngerDiary.App.Managers
                 Console.WriteLine("If you had not used any, please choose one which you would have used");
                 Console.WriteLine("When you finishd press 0");
                 Console.WriteLine();
-                var reducers = reducerService.GetNotUsedReducer();
+                var reducers = reducerService.GetNotUsedReducers();
                 foreach (var reducer in reducers)
                 {
                     Console.WriteLine($"{reducer.Id}. {reducer.Name}.");
@@ -259,7 +259,7 @@ namespace AngerDiary.App.Managers
                 Console.WriteLine("With which stages have you done well? Choose from below");
                 Console.WriteLine("When you finishd press 0");
                 Console.WriteLine();
-                var stages = stageService.AddNotUsedStage();
+                var stages = stageService.GetNotUsedStage();
                 foreach (var stage in stages)
                 {
                     Console.WriteLine($"{stage.Id}. {stage.Name}.");

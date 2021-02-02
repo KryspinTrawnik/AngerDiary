@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace AngerDiary.App.Concrete
 {
-    class ReducerService : BaseService<Reducer>
+    public class ReducerService : BaseService<Reducer>
     {
         public ReducerService()
         {
             Initialize();
         }
-        public List<Reducer> GetNotUsedReducer()
+        public List<Reducer> GetNotUsedReducers()
         {
             List<Reducer> result = new List<Reducer>();
             foreach (var reducer in Items)
@@ -24,9 +24,9 @@ namespace AngerDiary.App.Concrete
             return result;
         }
 
-        public Reducer FindReducerById(int id) => new List<Reducer>()
+        public Reducer GetReducerById(int id) => new List<Reducer>()
             .PickFromInitialList()
-            .Find(stage => stage.Id == id);
+            .Find(reducer => reducer.Id == id);
 
         private void Initialize()
         {
