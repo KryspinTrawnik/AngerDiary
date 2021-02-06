@@ -18,7 +18,7 @@ namespace AngerDiary.App.Concrete
         public Stage StageToImprove(List<Stage> stagesToImprove)
         {
             StagesToImprove = stagesToImprove;
-            Stage stageToImprove = StageService.Valuation(StagesToImprove);
+            Stage stageToImprove = StageService.GetMostValueStage(StagesToImprove);
 
                 return stageToImprove;
         }

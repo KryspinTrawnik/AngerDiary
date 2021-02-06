@@ -52,10 +52,11 @@ namespace AngryDiary.Tests
         {
             //Arrange
             var menuActionService = new MenuActionService();
-            //Act
-            var Result = menuActionService.GetMenuActionsByMenuName(menuName);
+            var expected = new MenuAction(id, name, menuName) { Id = id, Name = name, MenuName = menuName };
+                //Act
+            var result = menuActionService.GetMenuActionsByMenuName(menuName);
             //Assert
-            Result.Find(x => x.Id == id).Name.Should().Be(name);
+            result.Find(x => x.Id == id).Should().BeSameAs(expected);
         }
     }
 }

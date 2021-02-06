@@ -46,11 +46,13 @@ namespace AngryDiary.Tests
         {
             //Arrange
             var reducerService = new ReducerService();
-            var actual = reducerService.Items.Find(x => x.Id == id);
+            var expected = reducerService.Items.Find(x => x.Id == id);
             //Act
-            var expected = reducerService.GetReducerById(id);
+            var result = reducerService.GetReducerById(id);
             //Assert
-            actual.Should().Be(expected);
+            result.Should().BeSameAs(expected);
+            
+
         }
 
     }

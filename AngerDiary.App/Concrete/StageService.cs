@@ -26,7 +26,7 @@ namespace AngerDiary.App.Concrete
             return result;
         }
 
-        public Stage Valuation(List<Stage> stages)
+        public Stage GetMostValueStage(List<Stage> stages)
         {
             Stage stageToImprve = stages.Find(x => x.Value == stages.Max(y => y.Value));
             return stageToImprve;
