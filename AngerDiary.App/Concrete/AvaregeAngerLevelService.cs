@@ -16,14 +16,18 @@ namespace AngerDiary.App.Concrete
         }
         public AverageAngerSignalItems AvarageAngerSignal(EventService eventService)
         {
-            EventService = eventService;
+            SetEventService(eventService);
             GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate();
             GetMonthEarlierAngerLevelListAndAverages();
             GetPerecntageDifferenceAndtext();
             
                 return AverageAngerSignalItems;
         }
-        private void GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate()
+        public void SetEventService(EventService eventService)
+        {
+            EventService = eventService;
+        }
+        public void GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate()
         {
             foreach (Event _event in EventService.Items)
             {
@@ -33,7 +37,7 @@ namespace AngerDiary.App.Concrete
             AverageAngerSignalItems.TheNearestDate = AverageAngerSignalItems.AllDates.Max();
             AverageAngerSignalItems.MonthEarlierDate = AverageAngerSignalItems.TheNearestDate.AddMonths(-1);
         }
-        private void GetMonthEarlierAngerLevelListAndAverages()
+        public void GetMonthEarlierAngerLevelListAndAverages()
         {
             foreach (Event _event in EventService.Items)
             {
