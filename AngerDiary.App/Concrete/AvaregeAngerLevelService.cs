@@ -19,7 +19,7 @@ namespace AngerDiary.App.Concrete
             SetEventService(eventService);
             GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate();
             GetMonthEarlierAngerLevelListAndAverages();
-            GetPerecntageDifferenceAndtext();
+            GetPerecntageDifferenceAndText();
             
                 return AverageAngerSignalItems;
         }
@@ -52,7 +52,7 @@ namespace AngerDiary.App.Concrete
             AverageAngerSignalItems.DifferenceBetweenAverges = AverageAngerSignalItems.GeneralAverage -
                 AverageAngerSignalItems.MonthEarlierAverage;
         }
-        private void GetPerecntageDifferenceAndtext()
+        public void GetPerecntageDifferenceAndText()
         {
             if (AverageAngerSignalItems.DifferenceBetweenAverges > 0)
             {
