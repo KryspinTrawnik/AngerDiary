@@ -1,12 +1,9 @@
-﻿using System;
-using AngerDiary.Domain.Entity;
+﻿using AngerDiary.Domain.Entity;
 using Xunit;
 using FluentAssertions;
 using AngerDiary.App.Concrete;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AngryDiary.Tests
 {
