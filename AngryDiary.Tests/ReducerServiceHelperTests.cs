@@ -35,8 +35,8 @@ namespace AngryDiary.Tests
             //Act
             result = result.PickFromInitialList();
             //Assert
-            result[id].Name.Should().Be(name);
-            result[id].HasBeenUsed.Should().Be(hasBeenUsed);
+            result[id-1].Name.Should().Be(name);
+            result[id-1].HasBeenUsed.Should().Be(hasBeenUsed);
         }
     }
 }
