@@ -9,32 +9,32 @@ namespace AngerDiary.Domain.Entity
 {
     public class EventProgressItems
     {
-        public StageService stageService { get; set; }
+        public StageService StageService { get; set; }
 
-        public StrongSideService strongSideService { get; set; }
+        public StrongSideService StrongSideService { get; set; }
 
-        public StageToImproveService stageToImproveService { get; set; }
+        public StageToImproveService StageToImproveService { get; set; }
 
-        public StrongSideItems strongSideItems { get; set; }
+        public StrongSideItems StrongSideItems { get; set; }
 
-        public EventService eventService { get; set; }
+        public EventService EventService { get; set; }
 
-        public TheMostUsedReducer theMostUsedReducer { get; set; }
+        public TheMostUsedReducer TheMostUsedReducer { get; set; }
 
-        public AverageAngerSignalItems averageAngerSignalItems { get; set; }
+        public AverageAngerSignalItems AverageAngerSignalItems { get; set; }
 
-        public AvaregeAngerLevelService avaregeAngerLevelService { get; set; }
+        public AvaregeAngerLevelService AvaregeAngerLevelService { get; set; }
 
         public EventProgressItems(EventService eventService)
         {
-            stageService = new StageService();
-            strongSideService = new StrongSideService();
-            stageToImproveService = new StageToImproveService();
-            strongSideItems = new StrongSideItems();
-            theMostUsedReducer = new TheMostUsedReducer();
-            avaregeAngerLevelService = new AvaregeAngerLevelService();
-            averageAngerSignalItems = new AverageAngerSignalItems();
-            this.eventService = eventService;
+            StageService = new StageService();
+            StrongSideService = new StrongSideService();
+            StageToImproveService = new StageToImproveService();
+            StrongSideItems = new StrongSideItems();
+            TheMostUsedReducer = new TheMostUsedReducer();
+            AvaregeAngerLevelService = new AvaregeAngerLevelService();
+            AverageAngerSignalItems = new AverageAngerSignalItems();
+            this.EventService = eventService;
         }
     }
 
