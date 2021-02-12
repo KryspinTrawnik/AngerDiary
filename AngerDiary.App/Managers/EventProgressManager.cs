@@ -47,7 +47,7 @@ namespace AngerDiary.App.Managers
         }
         public void StrongSide()
         {
-            EventProgressItems.StrongSideItems = EventProgressItems.StrongSideService.StrongSidesCount(EventProgressItems.EventService, EventProgressItems.StageService);
+            EventProgressItems.StrongSideItems = EventProgressItems.StrongSideService.StrongSidesCount(EventProgressItems.EventService);
             Console.WriteLine($"The{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.StrongSideId).Name}");
             Console.WriteLine($"The{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.SecondStrongSideId).Name}");
         }

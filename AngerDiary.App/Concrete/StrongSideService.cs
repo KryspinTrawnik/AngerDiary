@@ -10,14 +10,15 @@ namespace AngerDiary.App.Concrete
     public class StrongSideService
     {
         private StrongSideItems StrongSide;
-        
+        private StageService StageService;
 
         public StrongSideService()
         {
             StrongSide = new StrongSideItems();
+            StageService = new StageService();
         }
 
-        public StrongSideItems StrongSidesCount(EventService eventService, StageService stageService)
+        public StrongSideItems StrongSidesCount(EventService eventService)
         {
             
             foreach(Event @event in eventService.Items)
@@ -41,13 +42,13 @@ namespace AngerDiary.App.Concrete
                 .Skip(2)
                 .Select(stage => stage.Item1).ToList();
 
-            stageService.Items
+            StageService.Items
                  .Clear();
 
-            stageService.Items
+            StageService.Items
                 .PickFromInitialList();
 
-            idOfStagesToImprove.ForEach(id => StrongSide.StagesToImprove.Add(stageService.FindStageById(id)));
+            idOfStagesToImprove.ForEach(id => StrongSide.StagesToImprove.Add(StageService.FindStageById(id)));
 
             return StrongSide;
         }

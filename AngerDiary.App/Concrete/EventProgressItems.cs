@@ -34,7 +34,7 @@ namespace AngerDiary.Domain.Entity
             TheMostUsedReducer = new TheMostUsedReducer();
             AvaregeAngerLevelService = new AvaregeAngerLevelService();
             AverageAngerSignalItems = new AverageAngerSignalItems();
-            this.EventService = eventService;
+            EventService = eventService;
         }
     }
 
