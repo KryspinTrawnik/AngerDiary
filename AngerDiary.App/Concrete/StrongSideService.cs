@@ -29,7 +29,7 @@ namespace AngerDiary.App.Concrete
                 }
             }
 
-            StrongSide.StrongSideIdCount = StrongSide.StrongSideIdCount.ToList().OrderBy(x => x.Item2).ToArray();
+            StrongSide.StrongSideIdCount = StrongSide.StrongSideIdCount.ToList().OrderByDescending(x => x.Item2).ToArray();
 
             StrongSide.StrongSideId = StrongSide.StrongSideIdCount.ToList()
                 .First().Item1;
