@@ -8,12 +8,12 @@ namespace AngerDiary.App.Concrete
 {
     public class TheMostUsedReducer
     {
-        private MostUsedReducerItems mostUsedReducerItems;
+        private MostUsedReducerItems MostUsedReducerItems;
         private ReducerService ReducerService;
 
         public TheMostUsedReducer()
         {
-            mostUsedReducerItems = new MostUsedReducerItems();
+            MostUsedReducerItems = new MostUsedReducerItems();
             ReducerService = new ReducerService();
         }
         public Reducer FindMostUsedReducer(EventService eventService)
@@ -22,16 +22,16 @@ namespace AngerDiary.App.Concrete
             {
                 for (int i = 1; _event.Reducers.Count > i; i++)
                 {
-                    mostUsedReducerItems.IdCount[_event.Reducers[i].Id - 1].Item2++;
+                    MostUsedReducerItems.IdCount[_event.Reducers[i].Id - 1].Item2++;
                 }
             }
 
-           mostUsedReducerItems.IdCount = mostUsedReducerItems.IdCount.ToList().OrderBy(x => x.Item2).ToArray();
-           mostUsedReducerItems.Id = mostUsedReducerItems.IdCount.ToList()
+           MostUsedReducerItems.IdCount = MostUsedReducerItems.IdCount.ToList().OrderBy(x => x.Item2).ToArray();
+           MostUsedReducerItems.Id = MostUsedReducerItems.IdCount.ToList()
                 .First().Item1;
-            mostUsedReducerItems.MostUsedReducer = ReducerService.GetReducerById(mostUsedReducerItems.Id);
+            MostUsedReducerItems.MostUsedReducer = ReducerService.GetReducerById(MostUsedReducerItems.Id);
 
-            return mostUsedReducerItems.MostUsedReducer;
+            return MostUsedReducerItems.MostUsedReducer;
 
         }
     }

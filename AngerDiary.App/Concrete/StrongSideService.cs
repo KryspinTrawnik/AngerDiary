@@ -23,7 +23,7 @@ namespace AngerDiary.App.Concrete
             
             foreach(Event @event in eventService.Items)
             {
-                for (int i = 1; @event.SelfEvaluation.Count > i; i++)
+                for (int i = 0; @event.SelfEvaluation.Count > i; i++)
                 {
                    StrongSide.StrongSideIdCount[@event.SelfEvaluation[i].Id - 1].Item2++;
                 }
