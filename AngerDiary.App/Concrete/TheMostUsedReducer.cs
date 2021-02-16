@@ -26,7 +26,7 @@ namespace AngerDiary.App.Concrete
                 }
             }
 
-           MostUsedReducerItems.IdCount = MostUsedReducerItems.IdCount.ToList().OrderBy(x => x.Item2).ToArray();
+           MostUsedReducerItems.IdCount = MostUsedReducerItems.IdCount.ToList().OrderByDescending(x => x.Item2).ToArray();
            MostUsedReducerItems.Id = MostUsedReducerItems.IdCount.ToList()
                 .First().Item1;
             MostUsedReducerItems.MostUsedReducer = ReducerService.GetReducerById(MostUsedReducerItems.Id);
