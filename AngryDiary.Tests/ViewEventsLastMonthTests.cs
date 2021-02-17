@@ -4,41 +4,42 @@ using AngerDiary.App.Concrete;
 
 namespace AngryDiary.Tests
 {
-    public class View7LasstEventsTests
+    public class ViewEventsLastMonthTests
     {
         [Fact]
-        public void Last7Events_IsNotNull()
+        public void ViewLastMonth_IsNotEmpty()
         {
-            //Act
+            //Arrange
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
             eventService.AddTestEvents(TestEvents);
-            var view7LastEvents = new View7LastEvents();
-            //Arrange
-            var result =  view7LastEvents.Last7Events(eventService);
+            var viewEventsLastMonth = new ViewEventsLastMonth();
+            //Act
+            var result = viewEventsLastMonth.ViewLastMonth(eventService);
             //Assert
             result.Should().NotBeEmpty();
         }
+
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
-        [InlineData(3)]
         [InlineData(4)]
-        public void Last7Events_ReturnsRightData(int id)
+        public void ViewLastMonth_ReturnsCorrectData(int id)
         {
-            //Act
+            //Arrange
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
             eventService.AddTestEvents(TestEvents);
-            var view7LastEvents = new View7LastEvents();
-            var expected = eventService.Items.Find(x => x.Id == id);
-            //Arrange
-            var result = view7LastEvents.Last7Events(eventService);
-            //Asset
-            result.Find(x => x.Id == id).Should().Be(expected);
-            
+            var viewEventsLastMonth = new ViewEventsLastMonth();
+            var expected = eventService.Items.Find(x =>x.Id == id);
+            if (id == 4)
+                id = 3;
+            //Act
+            var result = viewEventsLastMonth.ViewLastMonth(eventService);
+            //Assert
+            result.Find(x => x.Id == id).Should().BeEquivalentTo(expected);
         }
     }
 }
