@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AngerDiary.Domain.Entity;
+﻿
 using AngerDiary.App.Concrete;
 
 

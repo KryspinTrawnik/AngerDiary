@@ -17,7 +17,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             //Act
             strongSideItems = strongSideService.StrongSidesCount(eventService);
             //Assert
@@ -32,7 +32,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             //Act
             result = strongSideService.StrongSidesCount(eventService);
             //Assert
@@ -47,7 +47,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             //Act
             result = strongSideService.StrongSidesCount(eventService);
             //Assert
@@ -66,7 +66,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var expected = new Stage(id, name, hasBeenUsed, value);
             //Act
             result = strongSideService.StrongSidesCount(eventService);

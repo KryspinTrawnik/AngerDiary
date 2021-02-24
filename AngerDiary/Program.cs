@@ -2,21 +2,21 @@
 using AngerDiary.App.Managers;
 using AngerDiary.Helpers;
 using System;
+
 namespace AngerDiary
 {
     class Program
     {
         static void Main(string[] args)
         {
-
-
-            /// d sposoby radzenia sobie ze zloscia
-
+            /// d sposoby radzenia sobie ze zlosc)
+            FileService fileService = new FileService();
             MenuActionService actionService = new MenuActionService();
             EventService eventService = new EventService();
             Helper helpers = new Helper();
             EventViewManager eventViewManager = new EventViewManager(eventService);
             EventProgressManager eventProgressManager = new EventProgressManager(eventService);
+
             bool exit = false;
             do
             {
@@ -54,11 +54,12 @@ namespace AngerDiary
                     case '4':
                         break;
                     case '5':
+                        fileService.SavingToFile(eventService);
                         exit = true;
                         break;
                     case '6':
                         var testevents = helpers.TestEvents(); //Creating events for testing
-                        eventService.AddTestEvents(testevents);
+                        eventService.AddRangeOfEvents(testevents);
                         break;
                     default:
                         Console.WriteLine("Your request does not exist");
@@ -67,6 +68,5 @@ namespace AngerDiary
                 }
             } while (exit == false);
         }
-
     }
 }

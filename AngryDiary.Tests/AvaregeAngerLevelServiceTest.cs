@@ -14,7 +14,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var averageAngerLevelService = new AvaregeAngerLevelService();
             averageAngerLevelService.SetEventService(eventService);
             //Act
@@ -29,7 +29,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var avaregeAngerLevelService = new AvaregeAngerLevelService();
             avaregeAngerLevelService.SetEventService(eventService);
             var ExpectedTheNearestDate = new DateTime(2020, 11, 3, 11, 0, 0);
@@ -50,7 +50,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var avaregeAngerLevelService = new AvaregeAngerLevelService();
             avaregeAngerLevelService.SetEventService(eventService);
             avaregeAngerLevelService.GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate();
@@ -66,7 +66,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var avaregeAngerLevelService = new AvaregeAngerLevelService();
             avaregeAngerLevelService.SetEventService(eventService);
             avaregeAngerLevelService.GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate();
@@ -83,7 +83,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var averageAngerLevelService = new AvaregeAngerLevelService();
             averageAngerLevelService.SetEventService(eventService);
             averageAngerLevelService.GetAllDates_AngerLevelListsAndTheNearest_MonthEarlierDate();

@@ -13,7 +13,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var view7LastEvents = new View7LastEvents();
             //Arrange
             var result =  view7LastEvents.Last7Events(eventService);
@@ -31,7 +31,7 @@ namespace AngryDiary.Tests
             var eventService = new EventService();
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var view7LastEvents = new View7LastEvents();
             var expected = eventService.Items.Find(x => x.Id == id);
             //Arrange

@@ -15,7 +15,7 @@ namespace AngryDiary.Tests
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
             var theMostUsedReducer = new TheMostUsedReducer();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             //Act
             var result = theMostUsedReducer.FindMostUsedReducer(eventService);
             //Assert
@@ -29,7 +29,7 @@ namespace AngryDiary.Tests
             var eventsForTests = new EventsForTest();
             var TestEvents = eventsForTests.TestEvents();
             var theMostUsedReducer = new TheMostUsedReducer();
-            eventService.AddTestEvents(TestEvents);
+            eventService.AddRangeOfEvents(TestEvents);
             var expected = new Reducer(1, "Counting backward", false);
             //Act
             var result = theMostUsedReducer.FindMostUsedReducer(eventService);

@@ -12,9 +12,9 @@ namespace AngerDiary.App.Concrete
             int Id = Items.Count + 1;
             return Id;
         }
-        public void AddTestEvents(List<Event> testevents)
+        public void AddRangeOfEvents(List<Event> events)
         {
-            Items.AddRange(testevents);
+            Items.AddRange(events);
         }
     }
 }

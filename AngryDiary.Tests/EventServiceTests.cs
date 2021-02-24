@@ -25,7 +25,7 @@ namespace AngryDiary.Tests
             var eventsForTests = new EventsForTest();
             var testList = eventsForTests.TestEvents();
             //Act
-            eventService.AddTestEvents(testList);
+            eventService.AddRangeOfEvents(testList);
             //Assert
             eventService.Items.Should().NotBeEmpty();
         }
@@ -37,7 +37,7 @@ namespace AngryDiary.Tests
             var eventsForTests = new EventsForTest();
             var testList = eventsForTests.TestEvents();
             //Act
-            eventService.AddTestEvents(testList);
+            eventService.AddRangeOfEvents(testList);
             //Assert
             eventService.Items.Count.Should().Be(testList.Count);
         }
@@ -50,7 +50,7 @@ namespace AngryDiary.Tests
             var eventsForTests = new EventsForTest();
             var testList = eventsForTests.TestEvents();
             //Act
-            eventService.AddTestEvents(testList);
+            eventService.AddRangeOfEvents(testList);
             //Assert
             for(int x = 1; x < eventService.Items.Count; x++)
             {

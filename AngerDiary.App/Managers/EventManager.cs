@@ -1,8 +1,10 @@
 ﻿using AngerDiary.App.Abstract;
 using AngerDiary.App.Concrete;
 using AngerDiary.Domain.Entity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace AngerDiary.App.Managers
@@ -36,9 +38,11 @@ namespace AngerDiary.App.Managers
             AddNewEventConsequences();
             AddNewEventSelfEvaluation();
             AddNewEventSelfCoaching();
-
+            
             return _event;
         }
+
+       
 
         public void AddNewEventDate()
         {
