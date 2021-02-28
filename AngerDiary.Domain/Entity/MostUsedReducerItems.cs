@@ -1,12 +1,12 @@
-﻿using System;
+﻿using AngerDiary.Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AngerDiary.Domain.Entity
 {
-    public class MostUsedReducerItems
+    public class MostUsedReducerItems : BaseEntity
     {
-        public int Id { get; set; }
 
         public Reducer MostUsedReducer { get; set; }
 

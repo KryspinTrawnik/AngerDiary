@@ -29,7 +29,8 @@ namespace AngerDiary.App.Managers
             CultureInfo culture = CultureInfo.CreateSpecificCulture("en-GB");
             Console.WriteLine();
             Console.WriteLine($"From {EventProgressItems.EventService.Items[0].TimeOfEvent.Day}/" +
-            $"{EventProgressItems.EventService.Items[0].TimeOfEvent.Month}/{EventProgressItems.EventService.Items[0].TimeOfEvent.Year} you had " +
+            $"{EventProgressItems.EventService.Items[0].TimeOfEvent.Month}/" +
+            $"{EventProgressItems.EventService.Items[0].TimeOfEvent.Year} you had " +
             $"{EventProgressItems.EventService.Items.Count} events");
             Console.WriteLine($"Your average is from {EventProgressItems.AverageAngerSignalItems.TheNearestDate}");
             Console.WriteLine($"General average of anger level is {EventProgressItems.AverageAngerSignalItems.GeneralAverage} ");
@@ -56,7 +57,9 @@ namespace AngerDiary.App.Managers
         public void StageToImprove()
         {
             Console.WriteLine(" You need to work out on stage:");
-            Console.WriteLine(EventProgressItems.StageToImproveService.StageToImprove(EventProgressItems.StrongSideItems.StagesToImprove).Name);
+            Console.WriteLine(EventProgressItems.StageToImproveService.
+                StageToImprove(EventProgressItems.
+                StrongSideItems.StagesToImprove).Name);
         }
     }
 }

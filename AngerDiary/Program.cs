@@ -16,8 +16,8 @@ namespace AngerDiary
             Helper helpers = new Helper();
             EventViewManager eventViewManager = new EventViewManager(eventService);
             EventProgressManager eventProgressManager = new EventProgressManager(eventService);
-
             bool exit = false;
+            fileService.UploadItems(eventService);
             do
             {
                 Console.WriteLine("Welcome to Anger Diary");

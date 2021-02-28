@@ -10,7 +10,7 @@ namespace AngerDiary.App.Concrete
 {
     public class FileService
     {
-        private const string ItemsFilePath = @"C: \Users\Dell\Desktop\Kurs Zostan Programista NET\Json\Items.txt";
+        private const string ItemsFilePath = @"Items.txt";
         public FileService()
         {
             
@@ -18,7 +18,7 @@ namespace AngerDiary.App.Concrete
 
         public void SavingToFile(EventService eventService)
         {
-            using StreamWriter sw = new StreamWriter(ItemsFilePath);
+            using StreamWriter sw = new StreamWriter(ItemsFilePath, false);
             using JsonWriter writer = new JsonTextWriter(sw);
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(writer, eventService.Items);
@@ -26,11 +26,17 @@ namespace AngerDiary.App.Concrete
 
         public void UploadItems(EventService eventService)
         {
-            JsonSerializer serializier = new JsonSerializer();
-           string ReadList = File.ReadAllText(ItemsFilePath);
-           var ConvertedListOfEvents = JsonConvert.DeserializeObject<List<Event>>(ReadList);
+            if (File.Exists(ItemsFilePath))
+            {
+                string ReadList = File.ReadAllText(ItemsFilePath);
+                var ConvertedListOfEvents = JsonConvert.DeserializeObject<List<Event>>(ReadList);
 
-            eventService.AddRangeOfEvents(ConvertedListOfEvents);
+                eventService.AddRangeOfEvents(ConvertedListOfEvents);
+            }
+        }
+        public void MonthlyRaport(EventProgressItems eventProgressItems)
+        {
+
         }
     }
 }
