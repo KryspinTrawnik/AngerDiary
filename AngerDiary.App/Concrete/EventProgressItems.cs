@@ -1,8 +1,8 @@
 ﻿
-using AngerDiary.App.Concrete;
+using AngerDiary.Domain.Entity;
 
 
-namespace AngerDiary.Domain.Entity
+namespace AngerDiary.App.Concrete
 {
     public class EventProgressItems
     {

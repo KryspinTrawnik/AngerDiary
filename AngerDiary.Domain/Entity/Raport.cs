@@ -8,18 +8,24 @@ namespace AngerDiary.Domain.Entity
 {
     public class Raport : BaseEntity
     {
-        DateTime DateOfRaport { get; set; }
-            
-        int EventsCount { get; set; }
-        
-        double AngerLevelAvarage { get; set; }
+        public DateTime Date { get; set; }
 
-        Reducer TheMostUsedReducer { get; set; }
+        public int EventsCount { get; set; }
 
-        Stage StrongSideStage { get; set; }
+        public double AngerLevelAvarage { get; set; }
 
-        Stage SecondStrongSideStage { get; set; }
+        public Reducer TheMostUsedReducer { get; set; }
 
-        Stage StageToImprove { get; set; }
+        public Stage StrongSideStage { get; set; }
+
+        public Stage SecondStrongSideStage { get; set; }
+
+        public Stage StageToImprove { get; set; }
+
+        public Raport()
+        {
+
+        }
     }
+
 }
