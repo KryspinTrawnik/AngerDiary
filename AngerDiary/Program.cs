@@ -16,8 +16,10 @@ namespace AngerDiary
             Helper helpers = new Helper();
             EventViewManager eventViewManager = new EventViewManager(eventService);
             EventProgressManager eventProgressManager = new EventProgressManager(eventService);
+            RaportService raportService = new RaportService();
             bool exit = false;
             fileService.UploadItems(eventService);
+            fileService.UploadRaports(raportService);
             do
             {
                 Console.WriteLine("Welcome to Anger Diary");
@@ -35,8 +37,9 @@ namespace AngerDiary
                 {
                     case '1':
                         EventManager eventManeger = new EventManager();
-                        var newEvent = eventManeger.Menage(eventService);
+                        var newEvent = eventManeger.Menage(eventService, fileService);
                         eventService.AddItem(newEvent);
+                        fileService.SaveRaport(eventService, raportService);
                         break;
                     case '2':
                         eventViewManager.EventViewMenu(actionService);
@@ -55,6 +58,7 @@ namespace AngerDiary
                         break;
                     case '5':
                         fileService.SavingToFile(eventService);
+                        fileService.SaveRaport(eventService, raportService);
                         exit = true;
                         break;
                     case '6':

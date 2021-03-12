@@ -1,5 +1,4 @@
 ﻿using AngerDiary.Domain.Entity;
-
 using System.Collections.Generic;
 
 

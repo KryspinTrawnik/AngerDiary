@@ -1,0 +1,28 @@
+"Please, enter date and time of a new event"
+"Please, use format YYYY/MM/DD HH:MM  (Time needs to be in 24Hrs format)"
+Describe the event:
+What were your external triggers
+What were your internal triggers
+How angry were you in scale 0 to 10
+Anger level needs to be between 0 and 10
+Choose from below which of signals did you experience 
+When you finishd press 0
+Chosen id needs to be a number between 0 and 9
+Chosen signal has already been used please choose another one or press 0 to finish
+You need to use at least one signal
+Choose from below which of reducers did you used
+"If you had not used any, please choose one which you would have used "
+ When you finishd press 0 
+Chosen id needs to be a number between 0 and 4
+Chosen signal has already been used please choose another one or press 0 to finish
+You need to use at least one reducer
+Your request does not exist
+What was your self-instruction thoughts?
+What were positive or negative cosnequences of your behaviour?
+With which stages have you done well? Choose from below  
+When you finishd press 0
+Chosen id needs to be a number between 0 and 6
+Chosen option has already been used please choose another one or press 0 to finish
+You need to use at least one stage
+Your request does not exist
+What would you improve in your behavior

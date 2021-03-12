@@ -1,6 +1,4 @@
-﻿
-using AngerDiary.Domain.Entity;
-
+﻿using AngerDiary.Domain.Entity;
 
 namespace AngerDiary.App.Concrete
 {

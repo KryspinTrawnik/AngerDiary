@@ -1,12 +1,6 @@
-using System;
 using Xunit;
-using AngryDiary;
-using Moq;
 using FluentAssertions;
-using AngerDiary.App.Abstract;
-using AngerDiary.Domain.Entity;
 using AngerDiary.App.Concrete;
-using System.Collections.Generic;
 
 namespace AngryDiary.Tests
 {  

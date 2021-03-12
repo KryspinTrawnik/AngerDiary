@@ -1,5 +1,4 @@
-﻿
-using Xunit;
+﻿using Xunit;
 using FluentAssertions;
 using AngerDiary.App.Concrete;
 using AngerDiary.Domain.Entity;

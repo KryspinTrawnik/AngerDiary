@@ -1,7 +1,4 @@
 ﻿using AngerDiary.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AngerDiary.Domain.Entity
 {

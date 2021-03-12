@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using AngerDiary.Domain.Entity;
-using AngerDiary.App.Concrete;
 using AngerDiary.App.Common;
 
 namespace AngerDiary.App.Concrete
@@ -21,7 +19,7 @@ namespace AngerDiary.App.Concrete
             EventProgressItems = new EventProgressItems(eventService);
             EventProgressItems.StrongSideItems = EventProgressItems.StrongSideService.StrongSidesCount(EventProgressItems.EventService);
             
-            Raport.Id = Items.Count + 1;
+            Raport.Id = Items.Count/5;
             
             Raport.Date = DateTime.Today;
             
@@ -37,6 +35,15 @@ namespace AngerDiary.App.Concrete
             StageToImprove(EventProgressItems.StrongSideItems.StagesToImprove);
 
             return Raport;
+        }
+
+        public List<Raport> CreateAndAddRaport(EventService eventService)
+        {
+            
+                var raport = CreateRaport(eventService);
+                Items.Add(raport);
+
+            return Items;
         }
     }
 }

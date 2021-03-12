@@ -1,11 +1,7 @@
-﻿using AngerDiary.App.Abstract;
-using AngerDiary.App.Concrete;
+﻿using AngerDiary.App.Concrete;
 using AngerDiary.Domain.Entity;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace AngerDiary.App.Managers
 
@@ -16,6 +12,7 @@ namespace AngerDiary.App.Managers
         private readonly AngerSignalService angerSignalService;
         private readonly ReducerService reducerService;
         private readonly StageService stageService;
+        private List<string> Questions;
 
         public EventManager()
         {
@@ -26,12 +23,12 @@ namespace AngerDiary.App.Managers
 
         }
 
-        public Event Menage(EventService eventService)
+        public Event Menage(EventService eventService, FileService fileService)
         {
-            
+            Questions = fileService.ReadQuestions();
             _event.Id = eventService.AddId();
             AddNewEventDate();
-            AddNewEventDescribtion();
+            AddNewEventDescription();
             AddNewEventSignals();
             AddNewEventReducer();
             AddNewEventSelfInstruction();
@@ -41,9 +38,7 @@ namespace AngerDiary.App.Managers
             
             return _event;
         }
-
        
-
         public void AddNewEventDate()
         {
 
@@ -51,8 +46,8 @@ namespace AngerDiary.App.Managers
             bool checksucessful;
             do
             {
-                Console.WriteLine("Please, enter date and time of a new event");
-                Console.WriteLine("Please, use format YYYY/MM/DD HH:MM  (Time needs to be in 24Hrs format)");
+                Console.WriteLine(Questions[0]);
+                Console.WriteLine(Questions[1]);
                 Console.WriteLine();
                 string giventime = Console.ReadLine();
                 checksucessful = DateTime.TryParse(giventime, out timeofevent);
@@ -61,31 +56,31 @@ namespace AngerDiary.App.Managers
             _event.TimeOfEvent = timeofevent;
         }
 
-        public void AddNewEventDescribtion()
+        public void AddNewEventDescription()
         {
-            Console.WriteLine("Describe the event:");
+            Console.WriteLine(Questions[2]);
             Console.WriteLine();
             string description = Console.ReadLine();
             _event.Description = description;
 
-            Console.WriteLine("What were your external triggers");
+            Console.WriteLine(Questions[3]);
             Console.WriteLine();
             _event.ExternalTriggers = Console.ReadLine();
-            Console.WriteLine("What were your intternal triggers");
+            Console.WriteLine(Questions[4]);
             Console.WriteLine();
             _event.InternalTriggers = Console.ReadLine();
             bool checksucessful;
             int angerlevel;
             do
             {
-                Console.WriteLine("How angry were you in scale 0 to 10");
+                Console.WriteLine(Questions[5]);
                 Console.WriteLine();
                 string givenangerlevel = Console.ReadLine();
                 checksucessful = Int32.TryParse(givenangerlevel, out angerlevel);
                 _event.AngerLevel = angerlevel;
                 if (angerlevel > 10 || angerlevel < 0)
                 {
-                    Console.WriteLine("Anger level needs to be between 0 and 10");
+                    Console.WriteLine(Questions[6]);
                 }
             }
             while (!((angerlevel <= 10 && angerlevel >= 0) && checksucessful));
@@ -100,8 +95,8 @@ namespace AngerDiary.App.Managers
 
             do
             {
-                Console.WriteLine("Choose from below which of signals did you experience");
-                Console.WriteLine("When you finishd press 0");
+                Console.WriteLine(Questions[7]);
+                Console.WriteLine(Questions[8]);
                 Console.WriteLine();
                 var angerSignals = angerSignalService.ReturnNotUsedSignal();
                 foreach (var signal in angerSignals)
@@ -125,11 +120,11 @@ namespace AngerDiary.App.Managers
 
                     if (testoperation > 10 || testoperation < 0 || checksucessful == false)
                     {
-                        Console.WriteLine("Chosen id needs to be a number between 0 and 9");
+                        Console.WriteLine(Questions[9]);
                     }
                     else if (usedoperation.FindAll(p => p == testoperation).Count > 1 && givenoperation != "0")
                     {
-                        Console.WriteLine("Chosen signal has already been used please choose another one or press 0 to finish");
+                        Console.WriteLine(Questions[10]);
                         notusedoperation = false;
                     }
                     else
@@ -148,7 +143,7 @@ namespace AngerDiary.App.Managers
                    
                     if (usedoperation.Count == 0)
                     {
-                        Console.WriteLine("You need to use at least one signal");
+                        Console.WriteLine(Questions[11]);
                     }
                     else
                     {
@@ -158,7 +153,7 @@ namespace AngerDiary.App.Managers
                 }
                 else
                 {
-                    Console.WriteLine("Your request does not exist");
+                    Console.WriteLine(Questions[12]);
 
                 }
             } while (!(exit == true));
@@ -167,15 +162,14 @@ namespace AngerDiary.App.Managers
 
         public void AddNewEventReducer()
         {
-            
             _event.Reducers = new List<Reducer>();
             bool exit = false;
             List<int> usedoperation = new List<int>();
             do
             {
-                Console.WriteLine("Choose from below which of reducers did you used");
-                Console.WriteLine("If you had not used any, please choose one which you would have used");
-                Console.WriteLine("When you finishd press 0");
+                Console.WriteLine(Questions[13]);
+                Console.WriteLine(Questions[14]);
+                Console.WriteLine(Questions[15]);
                 Console.WriteLine();
                 var reducers = reducerService.GetNotUsedReducers();
                 foreach (var reducer in reducers)
@@ -198,11 +192,11 @@ namespace AngerDiary.App.Managers
 
                     if (testoperation > 4 || testoperation < 0 || checksucessful == false)
                     {
-                        Console.WriteLine("Chosen id needs to be a number between 0 and 4");
+                        Console.WriteLine(Questions[16]);
                     }
                     else if (usedoperation.FindAll(p => p == testoperation).Count > 1 && givenoperation != "0")
                     {
-                        Console.WriteLine("Chosen signal has already been used please choose another one or press 0 to finish");
+                        Console.WriteLine(Questions[17]);
                         notusedoperation = false;
                     }
                     else
@@ -221,7 +215,7 @@ namespace AngerDiary.App.Managers
                 {
                     if (usedoperation.Count == 0)
                     {
-                        Console.WriteLine("You need to use at least one reducer");
+                        Console.WriteLine(Questions[17]);
                     }
                     else
                     {
@@ -231,22 +225,21 @@ namespace AngerDiary.App.Managers
                 }
                 else
                 {
-                    Console.WriteLine("Your request does not exist");
+                    Console.WriteLine(Questions[18]);
                 }
 
             } while (!(exit == true));
         }
-
         public void AddNewEventSelfInstruction()
         {
             Console.Clear();
-            Console.WriteLine("What was your self-instruction thoughts?");
+            Console.WriteLine(Questions[19]);
             _event.SelfInstruction = Console.ReadLine();
         }
 
         public void AddNewEventConsequences()
         {
-            Console.WriteLine("What were positive or negative cosnequences of your behaviour?");
+            Console.WriteLine(Questions[20]);
             Console.WriteLine();
             _event.Consequences = Console.ReadLine();
         }
@@ -260,8 +253,8 @@ namespace AngerDiary.App.Managers
 
             do
             {
-                Console.WriteLine("With which stages have you done well? Choose from below");
-                Console.WriteLine("When you finishd press 0");
+                Console.WriteLine(Questions[21]);
+                Console.WriteLine(Questions[22]);
                 Console.WriteLine();
                 var stages = stageService.GetNotUsedStage();
                 foreach (var stage in stages)
@@ -283,11 +276,11 @@ namespace AngerDiary.App.Managers
                     }
                     if (testoperation > 6 || testoperation < 0 || checksucessful == false)
                     {
-                        Console.WriteLine("Chosen id needs to be a number between 0 and 6");
+                        Console.WriteLine(Questions[23]);
                     }
                     else if (usedoperation.FindAll(p => p == testoperation).Count > 1)
                     {
-                        Console.WriteLine("Chosen option has already been used please choose another one or press 0 to finish");
+                        Console.WriteLine(Questions[24]);
                         notusedoperation = false;
                     }
                     else
@@ -305,7 +298,7 @@ namespace AngerDiary.App.Managers
                 {
                     if (usedoperation.Count == 0)
                     {
-                        Console.WriteLine("You need to use at least one stage");
+                        Console.WriteLine(Questions[25]);
                     }
                     else
                     {
@@ -316,7 +309,7 @@ namespace AngerDiary.App.Managers
                 }
                 else
                 {
-                    Console.WriteLine("Your request does not exist");
+                    Console.WriteLine(Questions[26]);
                 }
 
             } while (!(exit == true));
@@ -324,7 +317,7 @@ namespace AngerDiary.App.Managers
 
         public void AddNewEventSelfCoaching()
         {
-            Console.WriteLine("What would you improve in your behavior");
+            Console.WriteLine(Questions[27]);
             Console.WriteLine();
             _event.SelfCoaching = Console.ReadLine();
             Console.Clear();

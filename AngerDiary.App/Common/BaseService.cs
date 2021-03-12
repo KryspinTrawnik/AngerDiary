@@ -14,7 +14,7 @@ namespace AngerDiary.App.Common
         }
         public void AddItem(T item)
         {
-            Items.Add(item);
+            Items.Add(item);    
 
         }
 

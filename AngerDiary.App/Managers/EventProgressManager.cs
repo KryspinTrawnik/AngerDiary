@@ -1,9 +1,6 @@
 ﻿using AngerDiary.App.Concrete;
-using AngerDiary.Domain.Entity;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace AngerDiary.App.Managers
 {
@@ -49,17 +46,17 @@ namespace AngerDiary.App.Managers
         public void StrongSide()
         {
             EventProgressItems.StrongSideItems = EventProgressItems.StrongSideService.StrongSidesCount(EventProgressItems.EventService);
-            Console.WriteLine($"{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.StrongSideId).Name}"+
-               $"{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.SecondStrongSideId).Id}") ;
-            Console.WriteLine($"{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.SecondStrongSideId).Id}"+
-                $"{ EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.SecondStrongSideId).Name}");
+            Console.WriteLine("You do well on those two stages:");
+            Console.WriteLine($"{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.StrongSideId).Id}." +
+                $" {EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.StrongSideId).Name}");
+            Console.WriteLine($"{EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.SecondStrongSideId).Id}."+
+                $" {EventProgressItems.StageService.FindStageById(EventProgressItems.StrongSideItems.SecondStrongSideId).Name}");
         }
         public void StageToImprove()
         {
-            Console.WriteLine(" You need to work out on stage:");
-            Console.WriteLine(EventProgressItems.StageToImproveService.
-                StageToImprove(EventProgressItems.
-                StrongSideItems.StagesToImprove).Name);
+            Console.WriteLine("You need to work out on stage:");
+            Console.WriteLine($"{EventProgressItems.StageToImproveService.StageToImprove(EventProgressItems.StrongSideItems.StagesToImprove).Id}." +
+                $"  {EventProgressItems.StageToImproveService.StageToImprove(EventProgressItems.StrongSideItems.StagesToImprove).Name}");
         }
     }
 }

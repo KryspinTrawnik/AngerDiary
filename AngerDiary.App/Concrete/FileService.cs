@@ -1,16 +1,17 @@
-﻿using AngerDiary;
-using AngerDiary.App.Concrete;
-using AngerDiary.Domain;
-using AngerDiary.Domain.Entity;
+﻿using AngerDiary.Domain.Entity;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+
 
 namespace AngerDiary.App.Concrete
 {
     public class FileService
     {
         private const string ItemsFilePath = @"Items.txt";
+        private const string RaportsFilePath = @"Raports.txt";
+        private const string Questions = @"C:\Users\Dell\Desktop\Kurs Zostan Programista NET\AngerDiary2\AngerDiary\Questions.csv";
         public FileService()
         {
             
@@ -34,9 +35,37 @@ namespace AngerDiary.App.Concrete
                 eventService.AddRangeOfEvents(ConvertedListOfEvents);
             }
         }
-        public void MonthlyRaport(EventProgressItems eventProgressItems)
+        public void SaveRaport(EventService eventService, RaportService raportService)
         {
+            if (eventService.Items.Count % 5 == 0)
+            {
+                
+                List<Raport> Raports = raportService.CreateAndAddRaport(eventService);
+                using StreamWriter sw = new StreamWriter(RaportsFilePath, false);
+                using JsonWriter writer = new JsonTextWriter(sw);
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(writer, Raports);
+            }
+        }
+        public void UploadRaports(RaportService raportService)
+        {
+            if(File.Exists(RaportsFilePath))
+            {
+                string ReadList = File.ReadAllText(RaportsFilePath);
+                var convertedRaports = JsonConvert.DeserializeObject<List<Raport>>(ReadList);
+            }
+        }
 
+        public List<string> ReadQuestions()
+        {
+            var read = File.ReadAllLines(Questions);
+            List<string> listOfQuestions = new List<string>();
+            foreach (string str in read)
+            {
+                string newstr = str.Trim('"');
+                listOfQuestions.Add(newstr);
+            }
+            return listOfQuestions;
         }
     }
 }
