@@ -8,7 +8,7 @@
 * [Inspiration](#inspiration)
 
 ## General info
-It is a console application that is a journal that aims to help a person coping with anger. A user can go through a questionnaire and then save it to the database. This application is built in CleanArchitecture - there are two layers - domain layer, where are all models and application layer, where services, interfaces, and managers (to communicate with user) were implemented. There are also unit tests written in accordance with the AAA pattern. ## Technologies
+It is a console application that is a journal that aims to help a person coping with anger. A user can go through a questionnaire and then save it to the database. This application is built in CleanArchitecture - there are two layers - domain layer, where are all models and application layer, where services, interfaces, and managers (to communicate with user) were implemented. There are also unit tests written in accordance with the AAA pattern.
 
 ⦁ .NET 5
 ⦁ LINQ
