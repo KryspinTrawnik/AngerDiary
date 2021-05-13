@@ -1,5 +1,5 @@
 # AngerDiary
-> Application for learning and practising copeing with anger.
+> Application for learning and practicing copying with anger.
 
 ## Table of contents
 * [General info](#general-info)
