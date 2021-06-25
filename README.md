@@ -24,4 +24,4 @@ It is a console application that is a journal that aims to help a person coping 
 ⦁ Tracking progress with some statistics
 ⦁ Creation raport from progress
 ## Inspiration
-The main goal of the project was to create a simple application thanks to which I can practice copeing with anger.
+The main goal of the project was to create a simple application thanks to which I can practice copying with anger.
