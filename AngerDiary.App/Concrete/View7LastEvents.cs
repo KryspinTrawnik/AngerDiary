@@ -7,7 +7,7 @@ namespace AngerDiary.App.Concrete
     {
         public List<Event> Last7Events(EventService eventService)
         {
-            int start = 0;
+            int start =0, y = 0;
             List<Event> eventsToView = new List<Event>();
 
             if (eventService.Items.Count > 7)
@@ -16,8 +16,10 @@ namespace AngerDiary.App.Concrete
             }
             for (int i = start; eventService.Items.Count > i; i++)
             {
+                
                 eventsToView.Add(eventService.Items[i]);
-                eventsToView[i].Id = eventsToView.Count;
+                eventsToView[y].Id = eventsToView.Count;
+                y++;
             }
             return eventsToView;
         }

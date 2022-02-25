@@ -19,7 +19,7 @@ namespace AngerDiary.App.Concrete
             EventProgressItems = new EventProgressItems(eventService);
             EventProgressItems.StrongSideItems = EventProgressItems.StrongSideService.StrongSidesCount(EventProgressItems.EventService);
             
-            Raport.Id = Items.Count/5;
+            Raport.Id = Items.Count;
             
             Raport.Date = DateTime.Today;
             

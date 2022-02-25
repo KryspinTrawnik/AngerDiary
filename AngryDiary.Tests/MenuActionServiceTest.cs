@@ -51,7 +51,8 @@ namespace AngryDiary.Tests
                 //Act
             var result = menuActionService.GetMenuActionsByMenuName(menuName);
             //Assert
-            result.Find(x => x.Id == id).Should().BeSameAs(expected);
+            result.Find(x => x.Id == id).Should().BeEquivalentTo(expected);
+                
         }
     }
 }

@@ -13,7 +13,7 @@ namespace AngryDiary.Tests
         {
             //Arrange
             var raportService = new RaportService();
-            int expected = raportService.Items.Count + 1;
+            int expected = raportService.Items.Count;
             var eventsService = new EventService();
             //Act
             var result = raportService.CreateRaport(eventsService);

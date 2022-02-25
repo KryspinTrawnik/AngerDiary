@@ -44,7 +44,7 @@ namespace AngryDiary.Tests
             //Act
             var result = reducerService.GetReducerById(id);
             //Assert
-            result.Should().BeSameAs(expected);
+            result.Should().BeEquivalentTo(expected);
             
 
         }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UiQkzGvDbEOsCMbEY055I7mh3RgEu0VSU5VTWQXQdWiFq7XXYyXFBZcmuDSnZU+RUC/mqdsIMHTaBQDkBBot4A==",
+  "dgSpecHash": "Wrl0ypQ//4fT9kqKzyTxaUuEtANS8sgwzeab8RIv9xRa5kZyPqJLiTTu42GW1KFvmdK4LJgF/IhE9Wyz+FMcIQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dell\\Desktop\\Kurs Zostan Programista NET\\AngerDiary2\\AngerDiary\\AngerDiary\\AngerDiary.csproj",
   "expectedPackageFiles": [
@@ -103,7 +103,8 @@
     "C:\\Users\\Dell\\.nuget\\packages\\xunit.assert\\2.4.1\\xunit.assert.2.4.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\xunit.core\\2.4.1\\xunit.core.2.4.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\xunit.extensibility.core\\2.4.1\\xunit.extensibility.core.2.4.1.nupkg.sha512",
-    "C:\\Users\\Dell\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512"
+    "C:\\Users\\Dell\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
   ],
   "logs": []
 }
